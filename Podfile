@@ -6,9 +6,10 @@ target 'SampleApp' do
   use_frameworks!
 
   # Pods for SampleApp
-  pod ‘SwifterSwift’
-  pod ‘RxSwift’,    ‘~> 4.0’
-  pod ‘RxCocoa’,    ‘~> 4.0’
+  pod 'SwifterSwift'
+  pod 'RxSwift', '~> 4.0'
+  pod 'RxCocoa', '~> 4.0'
+  pod 'GoogleSignIn'
 
   target 'SampleAppTests' do
     inherit! :search_paths
