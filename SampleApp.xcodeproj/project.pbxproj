@@ -127,10 +127,9 @@
 		A130AD9A20CA5E3D00811EC0 /* SampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				A172A89120D234C7009F4EA4 /* ViewController */,
 				A130ADCB20CA6BE400811EC0 /* SampleApp.entitlements */,
 				A130AD9B20CA5E3D00811EC0 /* AppDelegate.swift */,
-				A130AD9D20CA5E3D00811EC0 /* FirstViewController.swift */,
-				A130AD9F20CA5E3D00811EC0 /* SecondViewController.swift */,
 				A130ADA120CA5E3D00811EC0 /* Main.storyboard */,
 				A130ADA420CA5E3E00811EC0 /* Assets.xcassets */,
 				A130ADA620CA5E3E00811EC0 /* LaunchScreen.storyboard */,
@@ -155,6 +154,15 @@
 				A130ADBF20CA5E3E00811EC0 /* Info.plist */,
 			);
 			path = SampleAppUITests;
+			sourceTree = "<group>";
+		};
+		A172A89120D234C7009F4EA4 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A130AD9D20CA5E3D00811EC0 /* FirstViewController.swift */,
+				A130AD9F20CA5E3D00811EC0 /* SecondViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		F6B19E55347E543128756B0D /* Pods */ = {
