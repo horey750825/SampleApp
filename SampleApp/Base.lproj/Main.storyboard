@@ -42,6 +42,10 @@
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Main" image="first" id="acW-dT-cKf"/>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="A5M-7J-77L" id="ZgB-cH-cbu"/>
+                        <outlet property="userNameLabel" destination="KQZ-1w-vlD" id="Bh2-7L-Cc2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
