@@ -12,7 +12,12 @@ class SecondViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        prepareSetting()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func prepareSetting() {
+        
     }
 
     override func didReceiveMemoryWarning() {
