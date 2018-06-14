@@ -10,6 +10,7 @@ target 'SampleApp' do
   pod 'RxSwift', '~> 4.0'
   pod 'RxCocoa', '~> 4.0'
   pod 'GoogleSignIn'
+  pod 'XCGLogger'
 
   target 'SampleAppTests' do
     inherit! :search_paths

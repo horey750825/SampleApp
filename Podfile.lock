@@ -19,6 +19,9 @@ PODS:
   - GTMSessionFetcher/Core (1.1.15)
   - GTMSessionFetcher/Full (1.1.15):
     - GTMSessionFetcher/Core (= 1.1.15)
+  - ObjcExceptionBridging (1.0.1):
+    - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
+  - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
   - RxCocoa (4.1.2):
     - RxSwift (~> 4.0)
   - RxSwift (4.1.2)
@@ -37,12 +40,17 @@ PODS:
   - SwifterSwift/MapKit (4.3.0)
   - SwifterSwift/SwiftStdlib (4.3.0)
   - SwifterSwift/UIKit (4.3.0)
+  - XCGLogger (6.0.2):
+    - XCGLogger/Core (= 6.0.2)
+  - XCGLogger/Core (6.0.2):
+    - ObjcExceptionBridging
 
 DEPENDENCIES:
   - GoogleSignIn
   - RxCocoa (~> 4.0)
   - RxSwift (~> 4.0)
   - SwifterSwift
+  - XCGLogger
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -50,19 +58,23 @@ SPEC REPOS:
     - GoogleToolboxForMac
     - GTMOAuth2
     - GTMSessionFetcher
+    - ObjcExceptionBridging
     - RxCocoa
     - RxSwift
     - SwifterSwift
+    - XCGLogger
 
 SPEC CHECKSUMS:
   GoogleSignIn: d9ef55b10f0aa401a5de2747f59b725e4b9732ac
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
+  ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxSwift: e49536837d9901277638493ea537394d4b55f570
   SwifterSwift: f3fce2b9fc5b9d8fda6eec33825e5243c60aebba
+  XCGLogger: c9601cae9a8912de34a58666ba931ed3d624dd31
 
-PODFILE CHECKSUM: bebb6a2819fea1acd64f08e2920b3a3afeb7daca
+PODFILE CHECKSUM: 7b5227e52b28748cc3592cd3061a47a7c39ae037
 
 COCOAPODS: 1.5.3
