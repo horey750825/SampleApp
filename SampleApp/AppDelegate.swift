@@ -8,6 +8,8 @@
 
 import UIKit
 import XCGLogger
+import GoogleSignIn
+import SwifterSwift
 
 let logger = XCGLogger.default
 
@@ -22,6 +24,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // setup XCGLogger
         logger.setup(level: .debug, showLogIdentifier: false, showFunctionName: true, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, showDate: true)
+        
+        //setup user default data
+        
+        let defaultData = [
+            SettingID.DID_SIGNIN: false
+        ] as [String : Any]
+        
+        CommonManager.sharedInstance.ud.register(defaults: defaultData)
+        
+        // setup GoogleSingin
+        GIDSignIn.sharedInstance().clientID = "879429783455-4ip0nbjucb8optf2hp5dd5np6sgggtt5.apps.googleusercontent.com"
+        
         return true
     }
 
@@ -46,7 +60,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
+    
+    // Google Singin
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+    }
 
 }
 

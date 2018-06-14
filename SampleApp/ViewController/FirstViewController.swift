@@ -13,6 +13,24 @@ class FirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        logger.debug()
+        prepareSetting()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if !CommonManager.sharedInstance.ud.bool(forKey: SettingID.DID_SIGNIN) {
+            present(LoginViewController(), animated: true, completion: nil)
+        } else {
+            let imageUrl = CommonManager.sharedInstance.ud.url(forKey: UserDataID.USER_IMAGE)
+            let imageData = NSData(contentsOf: imageUrl!)
+            CommonManager.sharedInstance.imageForUser = UIImage(data: imageData! as Data)!
+        }
+    }
+    
+    func prepareSetting() {
+        
     }
 
     override func didReceiveMemoryWarning() {
