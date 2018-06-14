@@ -16,6 +16,11 @@
 		A130ADA820CA5E3E00811EC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A130ADA620CA5E3E00811EC0 /* LaunchScreen.storyboard */; };
 		A130ADB320CA5E3E00811EC0 /* SampleAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A130ADB220CA5E3E00811EC0 /* SampleAppTests.swift */; };
 		A130ADBE20CA5E3E00811EC0 /* SampleAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A130ADBD20CA5E3E00811EC0 /* SampleAppUITests.swift */; };
+		A172A89720D2367B009F4EA4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A172A89520D2367B009F4EA4 /* LoginViewController.swift */; };
+		A172A89820D2367B009F4EA4 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A172A89620D2367B009F4EA4 /* LoginViewController.xib */; };
+		A172A89C20D23980009F4EA4 /* CommonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = A172A89B20D23980009F4EA4 /* CommonID.swift */; };
+		A172A89E20D239F0009F4EA4 /* CommonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A172A89D20D239F0009F4EA4 /* CommonManager.swift */; };
+		A1DA6EF720D242F600DDB041 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1DA6EF620D242F600DDB041 /* HealthKit.framework */; };
 		E19CFCFBF4F533FA3B6326F5 /* Pods_SampleAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7667E6F8B45BF891A6E242D /* Pods_SampleAppTests.framework */; };
 		E592CAF58260A4CD153C40F9 /* Pods_SampleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD05927511B33523572DBF8 /* Pods_SampleApp.framework */; };
 /* End PBXBuildFile section */
@@ -60,6 +65,11 @@
 		A130ADBD20CA5E3E00811EC0 /* SampleAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleAppUITests.swift; sourceTree = "<group>"; };
 		A130ADBF20CA5E3E00811EC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A130ADCB20CA6BE400811EC0 /* SampleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SampleApp.entitlements; sourceTree = "<group>"; };
+		A172A89520D2367B009F4EA4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A172A89620D2367B009F4EA4 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		A172A89B20D23980009F4EA4 /* CommonID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonID.swift; sourceTree = "<group>"; };
+		A172A89D20D239F0009F4EA4 /* CommonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonManager.swift; sourceTree = "<group>"; };
+		A1DA6EF620D242F600DDB041 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		C7667E6F8B45BF891A6E242D /* Pods_SampleAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBB40A08F1BAF4B50E60BDEF /* Pods-SampleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SampleAppUITests/Pods-SampleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,6 +80,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E592CAF58260A4CD153C40F9 /* Pods_SampleApp.framework in Frameworks */,
+				A1DA6EF720D242F600DDB041 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +106,7 @@
 		0D638B645A90C39F7A216A4F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A1DA6EF620D242F600DDB041 /* HealthKit.framework */,
 				5CD05927511B33523572DBF8 /* Pods_SampleApp.framework */,
 				C7667E6F8B45BF891A6E242D /* Pods_SampleAppTests.framework */,
 				177D6133D7B67FFF75608488 /* Pods_SampleAppUITests.framework */,
@@ -127,6 +139,9 @@
 		A130AD9A20CA5E3D00811EC0 /* SampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				A172A89A20D23955009F4EA4 /* Common */,
+				A172A89920D23685009F4EA4 /* Views */,
+				A172A89420D2364D009F4EA4 /* Health */,
 				A172A89120D234C7009F4EA4 /* ViewController */,
 				A130ADCB20CA6BE400811EC0 /* SampleApp.entitlements */,
 				A130AD9B20CA5E3D00811EC0 /* AppDelegate.swift */,
@@ -161,8 +176,33 @@
 			children = (
 				A130AD9D20CA5E3D00811EC0 /* FirstViewController.swift */,
 				A130AD9F20CA5E3D00811EC0 /* SecondViewController.swift */,
+				A172A89520D2367B009F4EA4 /* LoginViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A172A89420D2364D009F4EA4 /* Health */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Health;
+			sourceTree = "<group>";
+		};
+		A172A89920D23685009F4EA4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A172A89620D2367B009F4EA4 /* LoginViewController.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A172A89A20D23955009F4EA4 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A172A89B20D23980009F4EA4 /* CommonID.swift */,
+				A172A89D20D239F0009F4EA4 /* CommonManager.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		F6B19E55347E543128756B0D /* Pods */ = {
@@ -252,6 +292,12 @@
 					A130AD9720CA5E3D00811EC0 = {
 						CreatedOnToolsVersion = 9.3.1;
 						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+							com.apple.HomeKit = {
+								enabled = 0;
+							};
 							com.apple.Keychain = {
 								enabled = 1;
 							};
@@ -292,6 +338,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A172A89820D2367B009F4EA4 /* LoginViewController.xib in Resources */,
 				A130ADA820CA5E3E00811EC0 /* LaunchScreen.storyboard in Resources */,
 				A130ADA520CA5E3E00811EC0 /* Assets.xcassets in Resources */,
 				A130ADA320CA5E3D00811EC0 /* Main.storyboard in Resources */,
@@ -426,8 +473,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A172A89720D2367B009F4EA4 /* LoginViewController.swift in Sources */,
 				A130ADA020CA5E3D00811EC0 /* SecondViewController.swift in Sources */,
 				A130AD9C20CA5E3D00811EC0 /* AppDelegate.swift in Sources */,
+				A172A89C20D23980009F4EA4 /* CommonID.swift in Sources */,
+				A172A89E20D239F0009F4EA4 /* CommonManager.swift in Sources */,
 				A130AD9E20CA5E3D00811EC0 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
