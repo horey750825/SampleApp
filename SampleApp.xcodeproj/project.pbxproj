@@ -21,6 +21,7 @@
 		A172A89C20D23980009F4EA4 /* CommonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = A172A89B20D23980009F4EA4 /* CommonID.swift */; };
 		A172A89E20D239F0009F4EA4 /* CommonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A172A89D20D239F0009F4EA4 /* CommonManager.swift */; };
 		A1DA6EF720D242F600DDB041 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1DA6EF620D242F600DDB041 /* HealthKit.framework */; };
+		A1DA6EF920D37C0F00DDB041 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DA6EF820D37C0E00DDB041 /* HealthManager.swift */; };
 		E19CFCFBF4F533FA3B6326F5 /* Pods_SampleAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7667E6F8B45BF891A6E242D /* Pods_SampleAppTests.framework */; };
 		E592CAF58260A4CD153C40F9 /* Pods_SampleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD05927511B33523572DBF8 /* Pods_SampleApp.framework */; };
 /* End PBXBuildFile section */
@@ -70,6 +71,7 @@
 		A172A89B20D23980009F4EA4 /* CommonID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonID.swift; sourceTree = "<group>"; };
 		A172A89D20D239F0009F4EA4 /* CommonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonManager.swift; sourceTree = "<group>"; };
 		A1DA6EF620D242F600DDB041 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		A1DA6EF820D37C0E00DDB041 /* HealthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
 		C7667E6F8B45BF891A6E242D /* Pods_SampleAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBB40A08F1BAF4B50E60BDEF /* Pods-SampleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SampleAppUITests/Pods-SampleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -184,6 +186,7 @@
 		A172A89420D2364D009F4EA4 /* Health */ = {
 			isa = PBXGroup;
 			children = (
+				A1DA6EF820D37C0E00DDB041 /* HealthManager.swift */,
 			);
 			path = Health;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 				A172A89C20D23980009F4EA4 /* CommonID.swift in Sources */,
 				A172A89E20D239F0009F4EA4 /* CommonManager.swift in Sources */,
 				A130AD9E20CA5E3D00811EC0 /* FirstViewController.swift in Sources */,
+				A1DA6EF920D37C0F00DDB041 /* HealthManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
