@@ -71,9 +71,6 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
             
             dismiss(animated: true, completion: {
                 logger.debug("")
-//                ViewController().getHealthKitPermission()
-                let alert = UIAlertController(title: "Login", message: "success")
-                alert.show()
             })
         }
     }
