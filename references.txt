@@ -50,3 +50,365 @@ https://stackoverflow.com/questions/50409143/convert-utf-8-bytes-emoji-code-to-e
 View
 iOS - 使用 Storyboard + Xib 來建立 CollectionView
 https://medium.com/@mikru168/ios-%E4%BD%BF%E7%94%A8-storyboard-xib-%E4%BE%86%E5%BB%BA%E7%AB%8B-collectionview-c2cff6e16bd0
+
+
+Object C
+申請憑證
+http://appsgaga.com/xcode7-實機測試/
+
+教學
+http://www.appcoda.com.tw
+https://blog.alphacamp.co/2015/09/14/how-to-learn-ios-app-development/
+http://www.cocoachina.com/industry/20131203/7462.html
+singleton
+http://pqteru.github.io/software/design_pattern/objective-c/2015/04/21/objective-c-singleton-class-example.html
+instance method
+http://blog.eddie.com.tw/2010/12/01/oop-in-objective-c/
+instancetype and id
+http://blog.csdn.net/wzzvictory/article/details/16994913
+
+prefixHeader PCH
+http://stackoverflow.com/questions/25840720/xcode-6-pch-file-not-found
+
+view controller life cycle
+http://blog.csdn.net/jjunjoe/article/details/8730326
+
+screen frame
+http://stackoverflow.com/questions/4779221/in-iphone-app-how-to-detect-the-screen-resolution-of-the-device
+
+UILabel touch action 
+http://stackoverflow.com/questions/3169798/handling-touch-event-in-uilabel-and-hooking-it-up-to-an-ibaction
+http://stackoverflow.com/questions/28018707/add-a-tap-gesture-to-a-part-of-a-uilabel
+
+iOS 9 and XCode 7 NSURLSession Trouble
+https://forums.developer.apple.com/thread/9029
+
+register notification
+https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/IPhoneOSClientImp.html
+
+xib
+http://greenchiu.github.io/blog/2013/08/29/shi-yong-xiblai-layout/
+http://blog.changyy.org/2012/08/ios-interface-builder-uitableviewcell.html
+http://qiita.com/gonsee/items/230cea1ee511d54b3e85     (最正確)
+http://blog.csdn.net/itianyi/article/details/8917026    (使用xib，一定會呼叫initWithCoder，而不會呼叫initWithFrame)
+
+delegate
+http://blog.csdn.net/huifeidexin_1/article/details/7567731
+
+get device iOS version
+http://stackoverflow.com/questions/18992766/best-way-to-check-for-ios-7-or-earlier
+
+get device information
+http://stackoverflow.com/questions/11197509/ios-how-to-get-device-make-and-model
+
+debug
+http://cg2010studio.com/2014/06/21/ios-測試debug與release模式/
+http://blog.csdn.net/daiyibo123/article/details/47152259
+http://my.oschina.net/leejan97/blog/296920
+http://www.jianshu.com/p/594ef5e06c2f
+
+modify the Xcode template
+http://www.jianshu.com/p/e244848c4ae2
+https://github.com/reidmain/Xcode-6-File-Templates
+
+line
+http://bribser.co.jp/blog/xcode-post-images-or-text-to-line/
+http://php6.jp/iphone/2013/07/09/post_to_line/
+http://blog.dreambreakerx.com/2013/09/line-api/
+http://himaratsu.hatenablog.com/entry/objc/snspost
+http://lab.dolice.net/blog/2014/01/09/download-objc-classes-dc-social2/
+if canopenurl is failed
+http://qiita.com/tadamatu/items/f31bb6da012c3816e525
+
+facebook
+http://qiita.com/Night___/items/2a4d46eaacfd0bee3db7
+
+property and Synthesize
+http://blog.eddie.com.tw/2010/12/08/property-and-synthesize/
+http://pydoing.blogspot.jp/2012/08/objc-property-and-synthesize.html
+http://www.devtalking.com/articles/you-should-to-know-property/
+
+GCD(Grand Central Dispatch) dispatch
+http://tutuge.me/2015/04/03/something-about-gcd/
+
+UICollectionView calendar
+http://dev.classmethod.jp/smartphone/how-to-calendar-ui-with-uicollectionview/
+http://blog.csdn.net/vic_fish/article/details/44137287
+http://blog.csdn.net/hitwhylz/article/details/20850675
+http://www.cnblogs.com/ios8/p/iOS-UICollectionView.html
+UICollectionViewDelegateFlowLayout
+http://my.oschina.net/asjoker/blog/543805
+UICollectionView 不同大小Cell 等间距的实现
+http://blog.csdn.net/chchong1234/article/details/45671801
+http://www.hcios.com/archives/621
+UICollectionViewDelegateFlowLayout
+http://stackoverflow.com/questions/28386506/remove-space-between-sections-in-collectionview
+http://www.cnblogs.com/wayne23/p/4013522.html
+custom  UICollectionViewFlowLayout
+http://www.jianshu.com/p/a11ef5e09237
+http://darren90.github.io/2015/12/27/UICollectionView%E7%9A%84%E4%BD%BF%E7%94%A8%E5%85%A8%E8%A7%A3/
+http://www.cnblogs.com/XYQ-208910/p/4985546.html
+http://blog.csdn.net/sinat_27706697/article/details/45932087
+https://onevcat.com/2012/08/advanced-collection-view/
+http://www.liuchungui.com/blog/2015/11/06/uicollectionviewzhi-zi-ding-yi-layout/
+http://stackoverflow.com/questions/13017257/how-do-you-determine-spacing-between-cells-in-uicollectionview-flowlayout
+http://dativestudios.com/blog/2015/01/10/collection_view_sticky_headers/
+http://dev.classmethod.jp/smartphone/iphone/ios6-uicollectionview-customlayout/
+https://gist.github.com/vigorouscoding/5155703
+http://qiita.com/edo_m18/items/9a79696aaa628d6f55bc
+reaching the bottom of the scroll view
+http://stackoverflow.com/questions/6217900/uiscrollview-reaching-the-bottom-of-the-scroll-view
+
+layout animation
+http://objccn.io/issue-12-5/
+collection view headerview
+http://blog.csdn.net/folish_audi/article/details/41383121
+https://teamtreehouse.com/community/adding-a-header-to-a-collectionview-object
+http://stackoverflow.com/questions/13394282/uicollectionview-how-to-get-the-header-view-for-a-section
+http://qiita.com/kaktaam/items/6035708823f31d4530a1
+
+iOS check network
+    Reachability
+    https://github.com/tonymillion/Reachability
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    if ([reachability currentReachabilityStatus] == NotReachable) {
+        return NO;
+    } else {
+        return YES;
+    }
+
+autolayout
+http://monkey-oyster.blogspot.jp/2014/10/auto-layout.html
+http://www.appcoda.com.tw/introduction-auto-layout/
+http://blog.csdn.net/yangbingbinga/article/details/43673817
+http://furnacedigital.blogspot.jp/2013/10/auto-layout.html
+NSDictionary
+http://stackoverflow.com/questions/17130136/resize-current-view-using-nslayoutconstraints
+aulolayout constrains debug
+http://blog.csdn.net/wsxzk123/article/details/42621867
+    add breakpoint
+    http://blog.csdn.net/zhangping871/article/details/44775349
+    https://viktyz.gitbooks.io/iosnotebook/content/Notes/Note_00128_20160105.html
+    https://github.com/viktyz/iosnotebook/blob/master/Notes/Note_00129_20160108.md
+    
+NSLayoutConstraint setting dynamic
+http://stackoverflow.com/questions/20946477/changing-nslayoutconstraint-is-not-working-in-ios7
+http://justsee.iteye.com/blog/1886463
+http://stackoverflow.com/questions/12926566/are-nslayoutconstraints-animatable
+http://www.jianshu.com/p/eb2c4bb4e3f1
+0 space to superview but still have gap between them in Xcode
+http://stackoverflow.com/questions/26957116/0-space-to-superview-but-still-have-gap-between-them-in-xcode
+http://stackoverflow.com/questions/26447266/ios-autolayout-changes-leading-and-trailing-space
+
+
+basic CGRectMake
+http://iphonemomo.pixnet.net/blog/post/36456871-uiview必備基礎與常用方法
+
+string
+http://www.oschina.net/code/snippet_54100_8104
+http://www.puritys.me/docs-blog/article-216-Objective-C-NSString-使用教學.html
+string read file
+http://stackoverflow.com/questions/7235015/reading-a-text-file-and-turning-it-into-a-string
+Objective-C怎麼切字串
+http://ithelp.ithome.com.tw/articles/10057661
+
+
+nstimer
+http://aiur3908.blogspot.jp/2014/12/objective-c-nstimer.html
+
+NSMutablearray sort
+http://stackoverflow.com/questions/3402667/sort-an-nsarray-in-descending-order
+http://stackoverflow.com/questions/805547/how-to-sort-an-nsmutablearray-with-custom-objects-in-it
+
+unbutton + target (function)
+http://ameblo.jp/xcc/entry-10422381835.html
+http://stackoverflow.com/questions/8836563/add-button-to-uitableviewcell
+http://qiita.com/tomochang/items/8770c1963afd8157e56b
+
+uialertviewcontroller
+https://www.invasivecode.com/weblog/uialertcontroller-alert-action-sheet/
+alert + text
+http://useyourloaf.com/blog/uialertcontroller-changes-in-ios-8.html
+
+uialertview
+http://hayageek.com/uialertview-example-ios/
+http://cms.35g.tw/coding/ios7、ios8-alert-更新轉換/
+
+
+
+uitableviewcell + button
+http://blog.csdn.net/u011619283/article/details/43057941
+
+uitableviewcell select single or multi
+http://mako-wis.hatenablog.com/entry/2014/03/07/110322
+http://stackoverflow.com/questions/25945932/perform-single-selection-of-row-in-uitableview-with-custom-uitableviewcell
+
+uiimageview
+http://blog.sina.com.cn/s/blog_9c2363ad0101e15l.html
+zoom
+http://servinggear.blogspot.jp/2012/02/uiview.html
+
+uiscrollview
+http://my.oschina.net/iq19900204/blog/206816
+
+uiactivityindicatorview
+http://blog.csdn.net/developer_jiangqq/article/details/19978697
+http://stackoverflow.com/questions/16854140/activity-indicator-for-5seconds
+http://stackoverflow.com/questions/25652101/please-wait-dialog-in-ios8
+http://stackoverflow.com/questions/27033466/how-to-display-activity-indicator-in-center-of-uialertcontroller
+    hidden when stop
+    http://stackoverflow.com/questions/28865659/hide-activity-indicator
+
+uiwebview by using html
+http://stackoverflow.com/questions/4645414/how-can-i-load-a-local-html-file-into-the-uiwebview
+uiwebview load javascript function from html
+http://stackoverflow.com/questions/8886443/calling-javascript-using-uiwebview
+inject javascript
+http://iphoneincubator.com/blog/windows-views/how-to-inject-javascript-functions-into-a-uiwebview
+call object c native function from javascript
+http://language-and-engineering.hatenablog.jp/entry/20120713/p1
+http://blog.engineer.adways.net/archives/10172788.html
+http://ntaku.hateblo.jp/entry/20111103/1320288456
+http://stackoverflow.com/questions/15537320/invoke-method-in-objective-c-code-from-html-code-using-uiwebview
+http://changyy.pixnet.net/blog/post/26989011-iphone-開發教學---使用-uiwebview-之-javascript-呼叫
+     Objective-C - Override URLs in UIWebView?
+     http://stackoverflow.com/questions/17798426/objective-c-override-urls-in-uiwebview
+     webView url using chinese or japanese
+     http://qiita.com/noppefoxwolf/items/12a3ee7c88dacaddf617
+
+gesture
+http://kevin-wu.net/use-uipangesturerecognizer-to-implement-drag-effect/
+http://nsblogger.hatenablog.com/entry/2014/06/13/uiview_drag
+
+WKWebview
+http://ushisantoasobu.hateblo.jp/entry/2014/09/15/174629
+http://liuyanwei.jumppo.com/2015/10/17/ios-webView.html
+http://blog.csdn.net/reylen/article/details/46437517
+http://www.slideshare.net/yukihirai52/wkwebviewanduiwebview
+wkwebview kvo
+http://dev.classmethod.jp/references/ios-8-wkwebview-title-url/
+http://blog.csdn.net/woaifen3344/article/details/49452227
+WKUIDelegate and auto layout
+http://qiita.com/ShingoFukuyama/items/5d97e6c62e3813d1ae98
+
+date picker ym
+http://development.hatenadiary.com/entry/20131201/1385897889
+
+uiview pass parameter
+http://stackoverflow.com/questions/20145924/array-not-passing-between-view-controllers-ios
+
+uitextview
+http://my.oschina.net/joanfen/blog/140143
+
+statusbar color
+http://stackoverflow.com/questions/17678881/how-to-change-status-bar-text-color-in-ios-7#comment28947732_17768797
+
+facebook
+http://blog.winwu.today/2014/05/ios-facebooksdk-facebook_12.html
+
+NSNotificationCenter
+http://www.cnblogs.com/ygm900/p/3596345.html
+http://www.cnblogs.com/xunziji/p/3257447.html
+
+add or remove child viewContriller
+https://gist.github.com/tomohisa/2897676
+
+SLComposeViewController (can share FB, twitter)
+http://blog.csdn.net/eqera/article/details/8135021
+
+navigationController
+http://nelson.logdown.com/posts/2014/10/11/how-to-go-back-to-the-rootviewcontroller
+http://iambigd.blogspot.jp/2014/05/ios-navigation-controller-viewcontroller.html
+
+navigation item titleview
+http://stackoverflow.com/questions/15285698/building-a-titleview-programmatically-with-constraints-or-generally-constructin
+
+
+json
+http://stackoverflow.com/questions/19404327/json-parsing-in-ios-7
+http://blog.csdn.net/enuola/article/details/7903632
+http://www.jianshu.com/p/a54d367adb2a
+
+push messages to client
+http://blog.toright.com/posts/2806/ios-apns-訊息推撥-apple-push-notification-service-介紹.html
+http://cg2010studio.com/2015/11/18/圖解ios-蘋果推播通知服務-apple-push-notification-service/
+http://blog.hrendoh.com/implement-apple-push-notification-service-on-ios-application/
+
+NSURLConnection get last modified time using http HEAD method
+http://iphoneincubator.com/blog/server-communication/how-to-download-a-file-only-if-it-has-been-updated
+
+NSUserDefaults
+http://stackoverflow.com/questions/5397364/iphone-how-to-detect-if-a-key-exists-in-nsuserdefaults-standarduserdefaults
+
+NSURLSession
+http://objccn.io/issue-5-4/
+http://blog.csdn.net/jymn_chen/article/details/18939171
+http://www.jianshu.com/p/6bcadb05a6da
+http://blog.csdn.net/jymn_chen/article/details/18939387
+http://www.cnblogs.com/biosli/p/iOS_Network_URL_Session.html
+http://hikaruapp.jpn.com/xcode/sample-code/post-476
+http://chicketen.blog.jp/archives/1256068.html
+
+CGRectIntersectsRect
+http://furnacedigital.blogspot.jp/2010/11/core-graphic_29.html
+
+enumerateKeysAndObjectsUsingBlock
+http://blog.sunnyxx.com/2014/04/30/ios_iterator/
+
+UIEdgeInsets
+http://www.superqq.com/blog/2015/07/03/uibuttonzhong-de-san-ge-uiedgeinsetsshu-xing-(%5B%3F%5D-)
+
+layoutIfNeeded
+http://stackoverflow.com/questions/13446920/how-can-i-get-a-views-current-width-and-height-when-using-autolayout-constraint/13542580#13542580
+
+GoogleMap
+https://developers.google.com/maps/documentation/ios-sdk/start?hl=zh-tw#4_console_name_api
+http://stackoverflow.com/questions/31782277/googlemaps-without-cocoapods
+   current place
+   https://developers.google.com/places/ios-api/current-place#permissions
+   marker
+   https://developers.google.com/maps/documentation/ios-sdk/marker?hl=zh-tw#_3
+   circle
+   https://developers.google.com/maps/documentation/ios-sdk/shapes#_15
+   https://developers.google.com/maps/documentation/ios-sdk/reference/interface_g_m_s_circle#property-documentation
+   add UIItem on googleMap
+   http://stackoverflow.com/questions/16643945/how-to-add-a-button-on-the-google-maps-in-ios
+   distance between 2 locations
+   http://stackoverflow.com/questions/16852564/google-maps-ios-sdk-distance-between-east-and-west-points-on-the-map
+   
+
+getcolorrgb
+UIColor *buttoncolor = self.randombutton.backgroundColor;
+
+    UIColor *viewbgcolor = self.view.backgroundColor;
+
+    CGFloat red = 0.0, green = 0.0, blue = 0.0, alpha = 0.0;
+
+    [buttoncolor getRed:&red green:&green blue:&blue alpha:&alpha];
+
+    [viewbgcolor getRed:&red green:&green blue:&blue alpha:&alpha];
+
+BSMachError
+http://futurist.cocolog-nifty.com/blog/2016/01/iosswift_bsmach.html
+
+cocoapods
+https://swiftlyios.com/swift-cocoapods-parse-dependecy-manage/
+http://www.csdn.net/article/2015-09-25/2825798-cocoapods-tutorial-ios8-swift
+http://blog.devtang.com/blog/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/
+
+http://iphone-dev.g.hatena.ne.jp/tokorom/20090520/1242789479
+http://qiita.com/tochi/items/2af840ded249b3e4e9bb
+
+custom view (customView.xib)
++ (instancetype)createView {
+    customView *view = [[UINib nibWithNibName:@"customView" bundle:nil] instantiateWithOwner:nil options:nil][0];
+    if(view != nil) {
+    return view;
+    } else {
+    return nil;
+    }
+}
+
+- (void)awakeFromNib {
+   //init view content
+}
