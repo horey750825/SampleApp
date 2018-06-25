@@ -1,0 +1,52 @@
+Reference books
+https://www.cnswift.org/
+https://kuntanury.com/2018/01/28/A-Swift-Tour/
+
+Class vs Structure
+https://gradyzhuo.gitbooks.io/meetswifttutorial/content/Episode_1/Chapter_1.html
+
+Closure
+https://medium.com/henrystime/swift-18f8ff9e9015
+
+if let , guard
+https://www.jianshu.com/p/3a9fbeef56a1
+
+optional : 問號 驚嘆號
+https://juejin.im/entry/596ef5576fb9a06bbc4b1e23
+https://medium.com/%E5%BD%BC%E5%BE%97%E6%BD%98%E7%9A%84-swift-ios-app-%E9%96%8B%E7%99%BC%E6%95%99%E5%AE%A4/%E7%B0%A1%E6%98%93%E8%AA%AA%E6%98%8Eswift-4-optional-7da19051e835
+
+
+TableView
+
+willDisplayCell 和cellForRowAtIndexPath区别
+https://blog.csdn.net/www9500net_/article/details/52690761
+
+GCD
+
+Swift 3學習指南：重新認識GCD應用
+https://www.appcoda.com.tw/grand-central-dispatch/
+
+ARC
+自動引用計數 : strong, weak and unowned
+https://tommy60703.gitbooks.io/swift-language-traditional-chinese/content/chapter2/16_Automatic_Reference_Counting.html
+
+C Libraries from Swift
+Getting Started Using C Libraries from Swift
+https://spin.atomicobject.com/2015/02/23/c-libraries-swift/
+
+chdir
+http://c.biancheng.net/cpp/html/305.html
+
+Get file path
+
+swift使用Bundle.main.path方法获取工程文件路径
+https://www.jianshu.com/p/a3e776af4772
+
+emoji
+
+Convert UTF-8 (Bytes) Emoji Code to Emoji icon as a text
+https://stackoverflow.com/questions/50409143/convert-utf-8-bytes-emoji-code-to-emoji-icon-as-a-text
+
+View
+iOS - 使用 Storyboard + Xib 來建立 CollectionView
+https://medium.com/@mikru168/ios-%E4%BD%BF%E7%94%A8-storyboard-xib-%E4%BE%86%E5%BB%BA%E7%AB%8B-collectionview-c2cff6e16bd0
