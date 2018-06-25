@@ -51,6 +51,13 @@ View
 iOS - 使用 Storyboard + Xib 來建立 CollectionView
 https://medium.com/@mikru168/ios-%E4%BD%BF%E7%94%A8-storyboard-xib-%E4%BE%86%E5%BB%BA%E7%AB%8B-collectionview-c2cff6e16bd0
 
+location gps
+
+用 Swift 開發一個 iOS 地域定向 App
+https://www.appcoda.com.tw/geo-targeting-ios/
+
+使用apple內建的MapKit，做一個移動紀錄
+https://medium.com/@lionshih/ios-swift-%E7%B0%A1%E6%98%93%E5%AE%9A%E4%BD%8D-af050e4352a1
 
 Object C
 申請憑證
