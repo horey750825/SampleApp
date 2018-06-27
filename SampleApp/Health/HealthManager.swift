@@ -9,10 +9,16 @@
 import UIKit
 import HealthKit
 
+struct PersonalProfile {
+    var height : Double = 0
+}
+
 class HealthManager: NSObject {
     static let sharedInstance: HealthManager = HealthManager()
     
     let healthStore = HKHealthStore()
+    
+    var personalProfile = PersonalProfile()
     
     private override init() {
         super.init()
@@ -45,5 +51,9 @@ class HealthManager: NSObject {
             }
         }
         healthStore.execute(query)
+    }
+    
+    func getPersonalProfile(completion : @escaping (Bool, Error?) -> Void) {
+        
     }
 }
