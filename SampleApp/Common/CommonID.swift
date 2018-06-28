@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum AuthResult {
     case success(Bool), failure(Error?)
@@ -24,4 +25,9 @@ struct UserDataID {
     static let FAMILY_NAME = "FAMILY_NAME"
     static let EMAIL = "EMAIL"
     static let USER_IMAGE = "USER_IMAGE"
+}
+
+struct DeviceProfile {
+    static let screenHeight = Double(UIScreen.main.bounds.size.height)
+    static let screenWidth = Double(UIScreen.main.bounds.size.width)
 }
