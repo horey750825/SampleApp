@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum AuthResult {
+    case success(Bool), failure(Error?)
+}
+
 struct SettingID {
     static let DID_SIGNIN = "DID_SIGNIN"
     static let USER_REGISTER_DATA = "USER_REGISTER_DATA"

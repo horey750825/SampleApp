@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class FirstViewController: UIViewController, HealthDelegate {
 
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -26,6 +26,8 @@ class FirstViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        HealthManager.sharedInstance.delegate = self
+        
         if !CommonManager.sharedInstance.ud.bool(forKey: SettingID.DID_SIGNIN) {
             present(LoginViewController(), animated: true, completion: nil)
         } else {
@@ -34,18 +36,17 @@ class FirstViewController: UIViewController {
             CommonManager.sharedInstance.imageForUser = UIImage(data: imageData! as Data)!
             
             //get user information
-            HealthManager.sharedInstance.authorizeHealthKit(completion: { (success, error) in
-                if success {
-                    logger.debug("\(success)")
-                    HealthManager.sharedInstance.getHeight { (success, height, error) in
-                        if success {
-                            logger.debug("\(height!)")
-                        }
+            HealthManager.sharedInstance.authorizeHealthKit(completion: { result in
+                switch result {
+                case .success(let granted) :
+                    if granted {
+                        logger.debug("access is granted")
+                        HealthManager.sharedInstance.getPersonalProfile()
+                    } else {
+                        logger.debug("access is denied")
                     }
-                } else {
-                    if error != nil {
-                        logger.debug(error.debugDescription)
-                    }
+                case .failure(let error) :
+                    logger.debug("access error \(error!.localizedDescription)")
                 }
             })
         }
@@ -72,6 +73,9 @@ class FirstViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    // #MARK - HealthDelegate
+    func finishPersonalProfile() {
+        logger.debug("\(HealthManager.sharedInstance.personalProfile.toString())")
+    }
 }
 
