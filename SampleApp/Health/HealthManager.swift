@@ -12,11 +12,17 @@ import HealthKit
 struct PersonalProfile {
     var height : Double = 0
     var weight : Double = 0
+    var sex: String?
+    var age: Int?
+    
+    let dataCount = 4
     
     func toString() -> String {
         var result = "Personal "
         result += "height = \(height) cm\n"
-        result += "weight = \(weight) cm"
+        result += "weight = \(weight) cm\n"
+        result += "age = \(age!)\n"
+        result += "sex = \(sex!)"
         return result
     }
 }
@@ -33,14 +39,23 @@ class HealthManager: NSObject {
 
     var personalProfile = PersonalProfile()
     let profileCount = 2
+    let bodyHeight = HKObjectType.quantityType(forIdentifier: .height)!
+    let bodyMass = HKObjectType.quantityType(forIdentifier: .bodyMass)!
+    let biologicalSex = HKObjectType.characteristicType(forIdentifier: .biologicalSex)!
+    let personalAge = HKObjectType.characteristicType(forIdentifier: .dateOfBirth)!
+    
     
     private override init() {
         super.init()
     }
     
     func authorizeHealthKit(completion: @escaping (AuthResult) -> Void) {
-        let toRead = Set(arrayLiteral: HKObjectType.quantityType(forIdentifier: .height)!,
-                         HKObjectType.quantityType(forIdentifier: .bodyMass)!)
+        let toRead : Set<HKObjectType> = [
+            bodyHeight,
+            bodyMass,
+            biologicalSex,
+            personalAge
+        ]
         let toShare = Set(arrayLiteral: HKSampleType.quantityType(forIdentifier: .height)!,
                           HKSampleType.quantityType(forIdentifier: .bodyMass)!)
         if !HKHealthStore.isHealthDataAvailable() {
@@ -85,8 +100,26 @@ class HealthManager: NSObject {
         healthStore.execute(query)
     }
     
+    func getAgeSex() throws -> (age: Int, biologicalSex: HKBiologicalSex) {
+        do {
+            let birth = try healthStore.dateOfBirthComponents()
+            let sex = try healthStore.biologicalSex()
+            let today = Date()
+            let calendar = Calendar.current
+            let todayDate = calendar.dateComponents([.year], from: today)
+            let thisYear = todayDate.year!
+            let age = thisYear - birth.year!
+            
+            let unwrapSex = sex.biologicalSex
+            
+            logger.debug("age = \(age), sex = \(unwrapSex.rawValue)")
+            return (age, unwrapSex)
+        }
+    }
+    
     func getPersonalProfile() {
         var count = profileCount
+        
         self.getHeight { (success, height, error) in
             if success {
                 if let data = height {
@@ -113,6 +146,21 @@ class HealthManager: NSObject {
             } else {
                 // error handler
             }
+        }
+        
+        do {
+            let data = try self.getAgeSex()
+            self.personalProfile.age = data.age
+            switch data.biologicalSex {
+            case .male:
+                self.personalProfile.sex = "Male"
+            case .female:
+                self.personalProfile.sex = "Female"
+            default:
+                self.personalProfile.sex = "notset"
+            }
+        } catch {
+            // error handler
         }
     }
 }

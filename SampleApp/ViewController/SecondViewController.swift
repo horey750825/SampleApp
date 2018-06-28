@@ -76,11 +76,17 @@ class SecondViewController: UIViewController, UIScrollViewDelegate, UITableViewD
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
         switch indexPath.row {
         case 0:
-            cell.textLabel?.text = "Weight"
-            cell.detailTextLabel?.text = "\(HealthManager.sharedInstance.personalProfile.weight)"
+            cell.textLabel?.text = "Sex"
+            cell.detailTextLabel?.text = "\(HealthManager.sharedInstance.personalProfile.sex!)"
         case 1:
+            cell.textLabel?.text = "Age"
+            cell.detailTextLabel?.text = "\(HealthManager.sharedInstance.personalProfile.age!)"
+        case 2:
             cell.textLabel?.text = "height"
             cell.detailTextLabel?.text = "\(HealthManager.sharedInstance.personalProfile.height)"
+        case 3:
+            cell.textLabel?.text = "weight"
+            cell.detailTextLabel?.text = "\(HealthManager.sharedInstance.personalProfile.weight)"
         default:
             cell.textLabel?.text = "Nikki"
             cell.detailTextLabel?.text = "0"
