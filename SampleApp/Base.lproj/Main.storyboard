@@ -31,13 +31,20 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Kj-gb-WCq">
+                                <rect key="frame" x="-0.5" y="148" width="375" height="470"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="8Kj-gb-WCq" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width" id="3sK-hP-Qfg"/>
                             <constraint firstItem="KQZ-1w-vlD" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="Lef-BL-OJl"/>
                             <constraint firstItem="KQZ-1w-vlD" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" constant="50" id="bk5-Hj-o0F"/>
                             <constraint firstItem="A5M-7J-77L" firstAttribute="top" secondItem="KQZ-1w-vlD" secondAttribute="bottom" constant="8" symbolic="YES" id="cfb-er-3JN"/>
+                            <constraint firstItem="8Kj-gb-WCq" firstAttribute="centerX" secondItem="PQr-Ze-W5v" secondAttribute="centerX" id="coQ-16-pdN"/>
+                            <constraint firstItem="8Kj-gb-WCq" firstAttribute="top" secondItem="A5M-7J-77L" secondAttribute="bottom" constant="10" id="dCO-IO-BQu"/>
                             <constraint firstItem="A5M-7J-77L" firstAttribute="centerX" secondItem="KQZ-1w-vlD" secondAttribute="centerX" id="e1l-AV-tCB"/>
+                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="bottom" secondItem="8Kj-gb-WCq" secondAttribute="bottom" id="s8W-P3-8fT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
