@@ -41,7 +41,9 @@ class FirstViewController: UIViewController, HealthDelegate {
                 case .success(let granted) :
                     if granted {
                         logger.debug("access is granted")
-                        HealthManager.sharedInstance.getPersonalProfile()
+                        if !HealthManager.sharedInstance.didGetProfile {
+                            HealthManager.sharedInstance.getPersonalProfile()
+                        }
                     } else {
                         logger.debug("access is denied")
                     }
@@ -75,6 +77,7 @@ class FirstViewController: UIViewController, HealthDelegate {
 
     // #MARK - HealthDelegate
     func finishPersonalProfile() {
+        HealthManager.sharedInstance.didGetProfile = true
         logger.debug("\(HealthManager.sharedInstance.personalProfile.toString())")
     }
 }

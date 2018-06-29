@@ -27,6 +27,11 @@ struct PersonalProfile {
     }
 }
 
+enum GetDataError: Error {
+    case getAgeProblem
+    case getSexProblem
+}
+
 public protocol HealthDelegate {
     func finishPersonalProfile()
 }
@@ -38,6 +43,7 @@ class HealthManager: NSObject {
     let healthStore = HKHealthStore()
 
     var personalProfile = PersonalProfile()
+    var didGetProfile = false
     let profileCount = 2
     let bodyHeight = HKObjectType.quantityType(forIdentifier: .height)!
     let bodyMass = HKObjectType.quantityType(forIdentifier: .bodyMass)!
@@ -100,25 +106,33 @@ class HealthManager: NSObject {
         healthStore.execute(query)
     }
     
-    func getAgeSex() throws -> (age: Int, biologicalSex: HKBiologicalSex) {
+    func getSex() throws -> HKBiologicalSex? {
+        do {
+            let sex = try healthStore.biologicalSex()
+            let unwrapSex = sex.biologicalSex
+            return unwrapSex
+        } catch {
+            logger.debug("\(error.localizedDescription)")
+            throw GetDataError.getSexProblem
+        }
+    }
+    
+    func getAge() throws -> Int {
         do {
             let birth = try healthStore.dateOfBirthComponents()
-            let sex = try healthStore.biologicalSex()
             let today = Date()
             let calendar = Calendar.current
             let todayDate = calendar.dateComponents([.year], from: today)
             let thisYear = todayDate.year!
             let age = thisYear - birth.year!
-            
-            let unwrapSex = sex.biologicalSex
-            
-            logger.debug("age = \(age), sex = \(unwrapSex.rawValue)")
-            return (age, unwrapSex)
+            return age
+        } catch {
+            throw GetDataError.getAgeProblem
         }
     }
     
     func getPersonalProfile() {
-        var count = profileCount
+        var count = personalProfile.dataCount
         
         self.getHeight { (success, height, error) in
             if success {
@@ -131,6 +145,7 @@ class HealthManager: NSObject {
                 }
             } else {
                 // error handler
+                logger.debug("getHeight error = \(error!.localizedDescription)")
             }
         }
         
@@ -145,22 +160,42 @@ class HealthManager: NSObject {
                 }
             } else {
                 // error handler
+                logger.debug("getWeight error = \(error!.localizedDescription)")
             }
         }
         
         do {
-            let data = try self.getAgeSex()
-            self.personalProfile.age = data.age
-            switch data.biologicalSex {
-            case .male:
-                self.personalProfile.sex = "Male"
-            case .female:
-                self.personalProfile.sex = "Female"
-            default:
-                self.personalProfile.sex = "notset"
+            let age = try self.getAge()
+            self.personalProfile.age = age
+            count -= 1
+            if count == 0 {
+                self.delegate?.finishPersonalProfile()
             }
         } catch {
-            // error handler
+            logger.debug("getAgeProblem")
         }
+        
+        do {
+            let biologicalSex = try self.getSex()
+            if let sex = biologicalSex {
+                switch sex {
+                case .male:
+                    self.personalProfile.sex = "Male"
+                case .female:
+                    self.personalProfile.sex = "Female"
+                default:
+                    self.personalProfile.sex = "notset"
+                }
+            } else {
+                self.personalProfile.sex = "notset"
+            }
+            count -= 1
+            if count == 0 {
+                self.delegate?.finishPersonalProfile()
+            }
+        } catch {
+            logger.debug("getSexProblem")
+        }
+        
     }
 }
