@@ -9,8 +9,9 @@
 import UIKit
 import MapKit
 
-class FirstViewController: UIViewController, HealthDelegate, LocationManagerDelegate, MKMapViewDelegate {
+class FirstViewController: UIViewController, HealthDelegate, LocationManagerDelegate, MKMapViewDelegate, UISearchBarDelegate {
 
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -25,6 +26,7 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
         HealthManager.sharedInstance.delegate = self
         LocationManager.sharedInstance.delegate = self
         mapView.delegate = self
+        searchBar.delegate = self
         logger.debug()
     }
     
@@ -116,6 +118,29 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
         }
     }
     
-    // #MARK - MKMapViewDelegate
+    // #MARK - UISearchBarDelegate
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
+        
+        let request = MKLocalSearchRequest()
+        request.region = self.mapView.region
+        request.naturalLanguageQuery = searchBar.text
+        
+        let mySearch = MKLocalSearch(request: request)
+        
+        mySearch.start { (response, error) in
+            if error != nil {
+                logger.debug("\(error!.localizedDescription)")
+            } else if response!.mapItems.count > 0 {
+                for item in response!.mapItems {
+                    logger.debug("\(item.name!)")
+                    let pin = MKPointAnnotation()
+                    pin.coordinate = item.placemark.coordinate
+                    pin.title = item.name
+                    self.mapView.addAnnotation(pin)
+                }
+            }
+        }
+    }
 }
 
