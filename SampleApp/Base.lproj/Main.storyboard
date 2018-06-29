@@ -19,23 +19,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="First View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="KQZ-1w-vlD">
-                                <rect key="frame" x="112.5" y="70" width="150.5" height="43"/>
+                                <rect key="frame" x="135.5" y="70" width="105.5" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by FirstViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5M-7J-77L">
-                                <rect key="frame" x="90.5" y="121" width="194.5" height="17"/>
+                                <rect key="frame" x="90.5" y="108" width="194.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Kj-gb-WCq">
-                                <rect key="frame" x="-0.5" y="148" width="375" height="470"/>
+                                <rect key="frame" x="0.0" y="135" width="375" height="483"/>
                             </mapView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="d74-5Z-WJ4">
-                                <rect key="frame" x="0.0" y="172" width="375" height="56"/>
+                            <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d74-5Z-WJ4">
+                                <rect key="frame" x="0.0" y="159" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
@@ -57,10 +57,10 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Main" image="first" id="acW-dT-cKf"/>
                     <connections>
-                        <outlet property="descriptionLabel" destination="A5M-7J-77L" id="ZgB-cH-cbu"/>
+                        <outlet property="labelDescription" destination="A5M-7J-77L" id="ZgB-cH-cbu"/>
+                        <outlet property="labelMain" destination="KQZ-1w-vlD" id="Bh2-7L-Cc2"/>
                         <outlet property="mapView" destination="8Kj-gb-WCq" id="7o0-zB-tkF"/>
                         <outlet property="searchBar" destination="d74-5Z-WJ4" id="1jr-LS-uNQ"/>
-                        <outlet property="userNameLabel" destination="KQZ-1w-vlD" id="Bh2-7L-Cc2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>

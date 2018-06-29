@@ -13,10 +13,12 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var labelMain: UILabel!
+    @IBOutlet weak var labelDescription: UILabel!
     
     var didAuthorize = false
+    var currentLocation : CLLocation!
+    var selectedPin: MKAnnotationView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,15 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
         LocationManager.sharedInstance.delegate = self
         mapView.delegate = self
         searchBar.delegate = self
+        
+        //map
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let region = MKCoordinateRegion(center: self.mapView.centerCoordinate, span: span)
+        self.mapView.region = region
+        
+        // UI
+        prepareSetting()
+        
         logger.debug()
     }
     
@@ -62,14 +73,8 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
     }
     
     func setLabel() {
-        if let userData = CommonManager.sharedInstance.ud.dictionary(forKey: SettingID.USER_REGISTER_DATA) {
-            var userName = userData[UserDataID.GIVEN_NAME] as! String
-            userName += " "
-            userName += userData[UserDataID.FAMILY_NAME] as! String
-            userNameLabel.text = userName
-        } else {
-            userNameLabel.text = "Hi"
-        }
+        self.labelMain.text = "Please Search"
+        self.labelDescription.text = "..."
     }
     
     func getAllAuthorize() {
@@ -109,12 +114,10 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
     
     // #MARK - LocationManagerDelegate
     func gotCurrentLocation(currentLocation: CLLocation) {
-        logger.debug("location \(currentLocation.coordinate.latitude), \(currentLocation.coordinate.longitude)")
+//        logger.debug("location \(currentLocation.coordinate.latitude), \(currentLocation.coordinate.longitude)")
         DispatchQueue.main.async {
             self.mapView.centerCoordinate = currentLocation.coordinate
-            let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-            let region = MKCoordinateRegion(center: self.mapView.centerCoordinate, span: span)
-            self.mapView.region = region
+            self.currentLocation = currentLocation
         }
     }
     
@@ -137,10 +140,53 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
                     let pin = MKPointAnnotation()
                     pin.coordinate = item.placemark.coordinate
                     pin.title = item.name
+                    pin.subtitle = item.phoneNumber
                     self.mapView.addAnnotation(pin)
                 }
             }
         }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        self.mapView.removeAnnotations(self.mapView.annotations)
+    }
+    
+    // #MARK - MKMapViewDelegate
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+
+        self.selectedPin = view
+        let toItem = MKMapItem(placemark: MKPlacemark(coordinate: view.annotation!.coordinate))
+        let fromItem = MKMapItem(placemark: MKPlacemark(coordinate: self.currentLocation.coordinate))
+        
+        let request = MKDirectionsRequest()
+        request.source = fromItem
+        request.destination = toItem
+        request.requestsAlternateRoutes = true
+        request.transportType = .walking
+        
+        let myDirection = MKDirections(request: request)
+        myDirection.calculate { (response, error) in
+            if error != nil || response!.routes.isEmpty {
+                return
+            }
+            
+            let route = response!.routes[0]
+            let distance = String(format: "%.2f", route.distance / 1000)
+            self.labelDescription.text = "\(distance) km, \(Int(route.expectedTravelTime) / 60) mins"
+            self.labelMain.text = self.selectedPin.annotation!.title!!
+            self.labelMain.sizeToFit()
+            self.mapView.removeOverlays(self.mapView.overlays)
+            self.mapView.add(route.polyline)
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let route = overlay as! MKPolyline
+        let render = MKPolylineRenderer(polyline: route)
+        render.lineWidth = 4
+        render.strokeColor = UIColor.cyan
+        return render
     }
 }
 
