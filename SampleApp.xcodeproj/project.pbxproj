@@ -19,7 +19,6 @@
 		A172A89720D2367B009F4EA4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A172A89520D2367B009F4EA4 /* LoginViewController.swift */; };
 		A172A89820D2367B009F4EA4 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A172A89620D2367B009F4EA4 /* LoginViewController.xib */; };
 		A172A89C20D23980009F4EA4 /* CommonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = A172A89B20D23980009F4EA4 /* CommonID.swift */; };
-		A172A89E20D239F0009F4EA4 /* CommonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A172A89D20D239F0009F4EA4 /* CommonManager.swift */; };
 		A17EC71320E4DED400AC3A2F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A17EC71220E4DED400AC3A2F /* MapKit.framework */; };
 		A17EC71620E5F5F800AC3A2F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17EC71520E5F5F800AC3A2F /* LocationManager.swift */; };
 		A1DA6EF720D242F600DDB041 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1DA6EF620D242F600DDB041 /* HealthKit.framework */; };
@@ -71,7 +70,6 @@
 		A172A89520D2367B009F4EA4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A172A89620D2367B009F4EA4 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		A172A89B20D23980009F4EA4 /* CommonID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonID.swift; sourceTree = "<group>"; };
-		A172A89D20D239F0009F4EA4 /* CommonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonManager.swift; sourceTree = "<group>"; };
 		A17EC71220E4DED400AC3A2F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A17EC71520E5F5F800AC3A2F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		A1DA6EF620D242F600DDB041 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -210,7 +208,6 @@
 			isa = PBXGroup;
 			children = (
 				A172A89B20D23980009F4EA4 /* CommonID.swift */,
-				A172A89D20D239F0009F4EA4 /* CommonManager.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -499,7 +496,6 @@
 				A130AD9C20CA5E3D00811EC0 /* AppDelegate.swift in Sources */,
 				A172A89C20D23980009F4EA4 /* CommonID.swift in Sources */,
 				A17EC71620E5F5F800AC3A2F /* LocationManager.swift in Sources */,
-				A172A89E20D239F0009F4EA4 /* CommonManager.swift in Sources */,
 				A130AD9E20CA5E3D00811EC0 /* FirstViewController.swift in Sources */,
 				A1DA6EF920D37C0F00DDB041 /* HealthManager.swift in Sources */,
 			);

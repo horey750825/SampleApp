@@ -13,18 +13,16 @@ enum AuthResult {
     case success(Bool), failure(Error?)
 }
 
-struct SettingID {
+struct Common {
+    static let ud = UserDefaults.standard
     static let DID_SIGNIN = "DID_SIGNIN"
     static let USER_REGISTER_DATA = "USER_REGISTER_DATA"
-}
-
-struct UserDataID {
-    static let USERID = "USERID"
-    static let IDTOKEN = "IDTOKEN"
-    static let GIVEN_NAME = "GIVEN_NAME"
-    static let FAMILY_NAME = "FAMILY_NAME"
-    static let EMAIL = "EMAIL"
-    static let USER_IMAGE = "USER_IMAGE"
+    static let USERDATA_USERID = "USERDATA_USERID"
+    static let USERDATA_IDTOKEN = "USERDATA_IDTOKEN"
+    static let USERDATA_GIVEN_NAME = "USERDATA_GIVEN_NAME"
+    static let USERDATA_FAMILY_NAME = "USERDATA_FAMILY_NAME"
+    static let USERDATA_EMAIL = "USERDATA_EMAIL"
+    static let USERDATA_USER_IMAGE = "USERDATA_USER_IMAGE"
 }
 
 struct DeviceProfile {

@@ -48,7 +48,7 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if !CommonManager.sharedInstance.ud.bool(forKey: SettingID.DID_SIGNIN) {
+        if !Common.ud.bool(forKey: Common.DID_SIGNIN) {
             present(LoginViewController(), animated: true, completion: nil)
         } else {
             if !didAuthorize {
@@ -65,11 +65,6 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
         
         //set UI
         setLabel()
-        
-        if let imageUrl = CommonManager.sharedInstance.ud.url(forKey: UserDataID.USER_IMAGE) {
-            let imageData = NSData(contentsOf: imageUrl)
-            CommonManager.sharedInstance.imageForUser = UIImage(data: imageData! as Data)!
-        }
     }
     
     func setLabel() {

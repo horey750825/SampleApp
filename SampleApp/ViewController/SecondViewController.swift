@@ -37,14 +37,16 @@ class SecondViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     func prepareSetting() {
         setLabel()
         setProfile()
-        imageViewUser.image = CommonManager.sharedInstance.imageForUser
+        let imageUrl = Common.ud.url(forKey: Common.USERDATA_USER_IMAGE)
+        let imageData = NSData(contentsOf: imageUrl!)
+        imageViewUser.image = UIImage(data: imageData! as Data)!
     }
     
     func setLabel() {
-        if let userData = CommonManager.sharedInstance.ud.dictionary(forKey: SettingID.USER_REGISTER_DATA) {
-            var userName = userData[UserDataID.GIVEN_NAME] as! String
+        if let userData = Common.ud.dictionary(forKey: Common.USER_REGISTER_DATA) {
+            var userName = userData[Common.USERDATA_GIVEN_NAME] as! String
             userName += " "
-            userName += userData[UserDataID.FAMILY_NAME] as! String
+            userName += userData[Common.USERDATA_FAMILY_NAME] as! String
             labelUserName.text = userName
         } else {
             labelUserName.text = "Hi"

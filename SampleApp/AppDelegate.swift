@@ -28,10 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //setup user default data
         
         let defaultData = [
-            SettingID.DID_SIGNIN: false
+            Common.DID_SIGNIN: false
         ] as [String : Any]
         
-        CommonManager.sharedInstance.ud.register(defaults: defaultData)
+        Common.ud.register(defaults: defaultData)
         
         // setup GoogleSingin
         GIDSignIn.sharedInstance().clientID = "879429783455-4ip0nbjucb8optf2hp5dd5np6sgggtt5.apps.googleusercontent.com"

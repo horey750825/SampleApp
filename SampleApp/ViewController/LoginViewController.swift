@@ -53,21 +53,18 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
         } else {
             //image
             let imageUrl = user.profile.imageURL(withDimension: 200)
-            CommonManager.sharedInstance.ud.set(imageUrl, forKey: UserDataID.USER_IMAGE)
-            let imageData = NSData(contentsOf: imageUrl!)
-            CommonManager.sharedInstance.imageForUser = UIImage(data: imageData! as Data)!
-            
+            Common.ud.set(imageUrl, forKey: Common.USERDATA_USER_IMAGE)
             
             let userData = [
-                UserDataID.USERID : user.userID,
-                UserDataID.IDTOKEN : user.authentication.idToken,
-                UserDataID.GIVEN_NAME : user.profile.givenName,
-                UserDataID.FAMILY_NAME : user.profile.familyName,
-                UserDataID.EMAIL : user.profile.email
+                Common.USERDATA_USERID : user.userID,
+                Common.USERDATA_IDTOKEN : user.authentication.idToken,
+                Common.USERDATA_GIVEN_NAME : user.profile.givenName,
+                Common.USERDATA_FAMILY_NAME : user.profile.familyName,
+                Common.USERDATA_EMAIL : user.profile.email
                 ] as [String : Any]
             
-            CommonManager.sharedInstance.ud.set(userData, forKey: SettingID.USER_REGISTER_DATA)
-            CommonManager.sharedInstance.ud.set(true, forKey: SettingID.DID_SIGNIN)
+            Common.ud.set(userData, forKey: Common.USER_REGISTER_DATA)
+            Common.ud.set(true, forKey: Common.DID_SIGNIN)
             
             dismiss(animated: true, completion: {
                 logger.debug("")
