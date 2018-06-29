@@ -7,56 +7,49 @@
 //
 
 import UIKit
+import MapKit
 
 class FirstViewController: UIViewController, HealthDelegate {
 
+    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    
+    var didAuthorize = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.mapView.showsUserLocation = true
+        HealthManager.sharedInstance.delegate = self
         logger.debug()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        prepareSetting()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        HealthManager.sharedInstance.delegate = self
         
         if !CommonManager.sharedInstance.ud.bool(forKey: SettingID.DID_SIGNIN) {
             present(LoginViewController(), animated: true, completion: nil)
         } else {
-            let imageUrl = CommonManager.sharedInstance.ud.url(forKey: UserDataID.USER_IMAGE)
-            let imageData = NSData(contentsOf: imageUrl!)
-            CommonManager.sharedInstance.imageForUser = UIImage(data: imageData! as Data)!
-            
-            //get user information
-            HealthManager.sharedInstance.authorizeHealthKit(completion: { result in
-                switch result {
-                case .success(let granted) :
-                    if granted {
-                        logger.debug("access is granted")
-                        if !HealthManager.sharedInstance.didGetProfile {
-                            HealthManager.sharedInstance.getPersonalProfile()
-                        }
-                    } else {
-                        logger.debug("access is denied")
-                    }
-                case .failure(let error) :
-                    logger.debug("access error \(error!.localizedDescription)")
-                }
-            })
+            if !didAuthorize {
+                self.getAllAuthorize()
+            }
         }
-        
     }
     
     func prepareSetting() {
+        
+        //set UI
         setLabel()
+        
+        if let imageUrl = CommonManager.sharedInstance.ud.url(forKey: UserDataID.USER_IMAGE) {
+            let imageData = NSData(contentsOf: imageUrl)
+            CommonManager.sharedInstance.imageForUser = UIImage(data: imageData! as Data)!
+        }
     }
     
     func setLabel() {
@@ -68,6 +61,30 @@ class FirstViewController: UIViewController, HealthDelegate {
         } else {
             userNameLabel.text = "Hi"
         }
+    }
+    
+    func getAllAuthorize() {
+        //get user information
+        HealthManager.sharedInstance.authorizeHealthKit(completion: { result in
+            switch result {
+            case .success(let granted) :
+                if granted {
+                    logger.debug("access is granted")
+                    if !HealthManager.sharedInstance.didGetProfile {
+                        HealthManager.sharedInstance.getPersonalProfile()
+                    }
+                } else {
+                    logger.debug("access is denied")
+                }
+            case .failure(let error) :
+                logger.debug("access error \(error!.localizedDescription)")
+            }
+            if !LocationManager.sharedInstance.didCheckAuthorization {
+                LocationManager.sharedInstance.getAuthorize()
+            }
+        })
+        
+        self.didAuthorize = true
     }
 
     override func didReceiveMemoryWarning() {

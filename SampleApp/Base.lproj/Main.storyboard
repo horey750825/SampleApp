@@ -51,6 +51,7 @@
                     <tabBarItem key="tabBarItem" title="Main" image="first" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="descriptionLabel" destination="A5M-7J-77L" id="ZgB-cH-cbu"/>
+                        <outlet property="mapView" destination="8Kj-gb-WCq" id="7o0-zB-tkF"/>
                         <outlet property="userNameLabel" destination="KQZ-1w-vlD" id="Bh2-7L-Cc2"/>
                     </connections>
                 </viewController>
