@@ -21,6 +21,7 @@
 		A172A89C20D23980009F4EA4 /* CommonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = A172A89B20D23980009F4EA4 /* CommonID.swift */; };
 		A172A89E20D239F0009F4EA4 /* CommonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A172A89D20D239F0009F4EA4 /* CommonManager.swift */; };
 		A17EC71320E4DED400AC3A2F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A17EC71220E4DED400AC3A2F /* MapKit.framework */; };
+		A17EC71620E5F5F800AC3A2F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17EC71520E5F5F800AC3A2F /* LocationManager.swift */; };
 		A1DA6EF720D242F600DDB041 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1DA6EF620D242F600DDB041 /* HealthKit.framework */; };
 		A1DA6EF920D37C0F00DDB041 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DA6EF820D37C0E00DDB041 /* HealthManager.swift */; };
 		E19CFCFBF4F533FA3B6326F5 /* Pods_SampleAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7667E6F8B45BF891A6E242D /* Pods_SampleAppTests.framework */; };
@@ -72,6 +73,7 @@
 		A172A89B20D23980009F4EA4 /* CommonID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonID.swift; sourceTree = "<group>"; };
 		A172A89D20D239F0009F4EA4 /* CommonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonManager.swift; sourceTree = "<group>"; };
 		A17EC71220E4DED400AC3A2F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		A17EC71520E5F5F800AC3A2F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		A1DA6EF620D242F600DDB041 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		A1DA6EF820D37C0E00DDB041 /* HealthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
 		C7667E6F8B45BF891A6E242D /* Pods_SampleAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,6 +147,7 @@
 		A130AD9A20CA5E3D00811EC0 /* SampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				A17EC71420E5F5D000AC3A2F /* Location */,
 				A172A89A20D23955009F4EA4 /* Common */,
 				A172A89920D23685009F4EA4 /* Views */,
 				A172A89420D2364D009F4EA4 /* Health */,
@@ -210,6 +213,14 @@
 				A172A89D20D239F0009F4EA4 /* CommonManager.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		A17EC71420E5F5D000AC3A2F /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				A17EC71520E5F5F800AC3A2F /* LocationManager.swift */,
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 		F6B19E55347E543128756B0D /* Pods */ = {
@@ -487,6 +498,7 @@
 				A130ADA020CA5E3D00811EC0 /* SecondViewController.swift in Sources */,
 				A130AD9C20CA5E3D00811EC0 /* AppDelegate.swift in Sources */,
 				A172A89C20D23980009F4EA4 /* CommonID.swift in Sources */,
+				A17EC71620E5F5F800AC3A2F /* LocationManager.swift in Sources */,
 				A172A89E20D239F0009F4EA4 /* CommonManager.swift in Sources */,
 				A130AD9E20CA5E3D00811EC0 /* FirstViewController.swift in Sources */,
 				A1DA6EF920D37C0F00DDB041 /* HealthManager.swift in Sources */,
