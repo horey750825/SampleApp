@@ -32,7 +32,7 @@ enum GetDataError: Error {
     case getSexProblem
 }
 
-public protocol HealthDelegate {
+protocol HealthDelegate {
     func finishPersonalProfile()
 }
 

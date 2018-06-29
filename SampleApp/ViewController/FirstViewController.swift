@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class FirstViewController: UIViewController, HealthDelegate {
+class FirstViewController: UIViewController, HealthDelegate, LocationManagerDelegate, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -20,8 +20,11 @@ class FirstViewController: UIViewController, HealthDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
         self.mapView.showsUserLocation = true
         HealthManager.sharedInstance.delegate = self
+        LocationManager.sharedInstance.delegate = self
+        mapView.delegate = self
         logger.debug()
     }
     
@@ -39,6 +42,10 @@ class FirstViewController: UIViewController, HealthDelegate {
                 self.getAllAuthorize()
             }
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        LocationManager.sharedInstance.stopUpdatingLocation()
     }
     
     func prepareSetting() {
@@ -97,5 +104,18 @@ class FirstViewController: UIViewController, HealthDelegate {
         HealthManager.sharedInstance.didGetProfile = true
         logger.debug("\(HealthManager.sharedInstance.personalProfile.toString())")
     }
+    
+    // #MARK - LocationManagerDelegate
+    func gotCurrentLocation(currentLocation: CLLocation) {
+        logger.debug("location \(currentLocation.coordinate.latitude), \(currentLocation.coordinate.longitude)")
+        DispatchQueue.main.async {
+            self.mapView.centerCoordinate = currentLocation.coordinate
+            let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+            let region = MKCoordinateRegion(center: self.mapView.centerCoordinate, span: span)
+            self.mapView.region = region
+        }
+    }
+    
+    // #MARK - MKMapViewDelegate
 }
 

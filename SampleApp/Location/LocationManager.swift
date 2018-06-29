@@ -9,15 +9,14 @@
 import UIKit
 import CoreLocation
 
-public protocol LocationManagerDelegate {
+protocol LocationManagerDelegate : NSObjectProtocol {
+    func gotCurrentLocation(currentLocation : CLLocation)
 }
 
 class LocationManager: NSObject, CLLocationManagerDelegate {
     static let sharedInstance : LocationManager = LocationManager()
     var manager : CLLocationManager!
     var delegate : LocationManagerDelegate?
-    
-    var currentLocation : CLLocation!
     
     var didCheckAuthorization = false
     
@@ -61,7 +60,11 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     // MARK CLLocationManagerDelegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.currentLocation = locations[0]
-        logger.debug("location \(self.currentLocation.coordinate.latitude), \(self.currentLocation.coordinate.longitude)")
+        let currentLocation = locations[0]
+        self.delegate?.gotCurrentLocation(currentLocation: currentLocation)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        logger.debug("status \(status.rawValue)")
     }
 }
