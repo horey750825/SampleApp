@@ -110,7 +110,7 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
         if distance < 0 {
             self.labelDescription.text = "You have finished the target"
         } else {
-            self.labelDescription.text = "Still has \(HealthManager.sharedInstance.getShouldWalkDistance()) km"
+            self.labelDescription.text = "Still has \(HealthManager.sharedInstance.getShouldWalkDistance().rounded(toPlaces: 2)) km"
         }
     }
     
@@ -140,8 +140,9 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
         HealthManager.sharedInstance.didGetProfile = true
         logger.debug("\(HealthManager.sharedInstance.personalProfile.toString())")
         DispatchQueue.main.async {
-            self.labelMain.text = "walking distance today = \(HealthManager.sharedInstance.personalProfile.walkingDistance) km"
+            self.labelMain.text = "distance today = \(HealthManager.sharedInstance.personalProfile.walkingDistance.rounded(toPlaces: 2)) km"
             self.labelMain.sizeToFit()
+            self.setLabelDescription()
         }
     }
     

@@ -113,10 +113,10 @@ class SecondViewController: UIViewController, UIScrollViewDelegate, UITableViewD
             cell.detailTextLabel?.text = "\(HealthManager.sharedInstance.personalProfile.weight)"
         case 4:
             cell.textLabel?.text = "Walking Distance Today(km)"
-            cell.detailTextLabel?.text = "\(HealthManager.sharedInstance.personalProfile.walkingDistance)"
+            cell.detailTextLabel?.text = "\(HealthManager.sharedInstance.personalProfile.walkingDistance.rounded(toPlaces: 2))"
         case 5:
             cell.textLabel?.text = "Walking Distance Everyday(km)"
-            cell.detailTextLabel?.text = "\(HealthManager.sharedInstance.personalProfile.distanceEveryday)"
+            cell.detailTextLabel?.text = "\(HealthManager.sharedInstance.personalProfile.distanceEveryday.rounded(toPlaces: 2))"
         default:
             cell.textLabel?.text = "Nikki"
             cell.detailTextLabel?.text = "0"
