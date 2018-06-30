@@ -256,4 +256,8 @@ class HealthManager: NSObject {
         Common.ud.set(distance, forKey: Common.SET_WALKING_DISTANCE)
         Common.ud.synchronize()
     }
+    
+    func getShouldWalkDistance() -> Double {
+        return personalProfile.distanceEveryday - personalProfile.walkingDistance
+    }
 }

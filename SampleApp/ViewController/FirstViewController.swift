@@ -58,6 +58,7 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
             } else {
                 LocationManager.sharedInstance.startUpdatingLocation()
             }
+            setLabelDescription()
         }
     }
     
@@ -73,7 +74,7 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
     
     func setLabel() {
         self.labelMain.text = "Please Search"
-        self.labelDescription.text = "..."
+        setLabelDescription()
     }
     
     func getAllAuthorize() {
@@ -98,6 +99,19 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
         })
         
         self.didAuthorize = true
+    }
+    
+    func setLabelDescription() {
+        if !HealthManager.sharedInstance.personalProfile.didCheckDistanceEveryday {
+            self.labelDescription.text = "..."
+            return
+        }
+        let distance = HealthManager.sharedInstance.getShouldWalkDistance()
+        if distance < 0 {
+            self.labelDescription.text = "You have finished the target"
+        } else {
+            self.labelDescription.text = "Still has \(HealthManager.sharedInstance.getShouldWalkDistance()) km"
+        }
     }
     
     func clearAllPinsAndOverlays() {
@@ -128,20 +142,6 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
         DispatchQueue.main.async {
             self.labelMain.text = "walking distance today = \(HealthManager.sharedInstance.personalProfile.walkingDistance) km"
             self.labelMain.sizeToFit()
-            if !HealthManager.sharedInstance.personalProfile.didCheckDistanceEveryday {
-                let alert = UIAlertController(title: "Set Distance", message: "Please set only by numberic(km)", preferredStyle: .alert)
-                alert.addTextField(text: "", placeholder: "set the distnce(x.xx) you want", editingChangedTarget: nil, editingChangedSelector: nil)
-                alert.textFields?.first?.delegate = self
-                alert.addAction(title: "Cancel", style: .cancel, isEnabled: true, handler: nil)
-                alert.addAction(title: "OK", style: .default, isEnabled: true, handler: { (action) in
-                    let inputText = alert.textFields!.first!.text!
-                    if !inputText.isEmpty {
-                        HealthManager.sharedInstance.setDistanceEverydat(Double(inputText)!)
-                    }
-                    logger.debug("\(inputText)")
-                })
-                alert.show()
-            }
         }
     }
     
@@ -151,6 +151,21 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
         DispatchQueue.main.async {
             self.mapView.centerCoordinate = currentLocation.coordinate
             self.currentLocation = currentLocation
+            if !HealthManager.sharedInstance.personalProfile.didCheckDistanceEveryday {
+                let alert = UIAlertController(title: "Set Distance", message: "Please set only by numberic(km)", preferredStyle: .alert)
+                alert.addTextField(text: "", placeholder: "set the distnce(x.xx) you want", editingChangedTarget: nil, editingChangedSelector: nil)
+                alert.textFields?.first?.delegate = self
+                alert.addAction(title: "Cancel", style: .cancel, isEnabled: true, handler: nil)
+                alert.addAction(title: "OK", style: .default, isEnabled: true, handler: { (action) in
+                    let inputText = alert.textFields!.first!.text!
+                    if !inputText.isEmpty {
+                        HealthManager.sharedInstance.setDistanceEverydat(Double(inputText)!)
+                        self.setLabelDescription()
+                    }
+                    logger.debug("\(inputText)")
+                })
+                alert.show()
+            }
         }
     }
     
@@ -170,7 +185,7 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
                 logger.debug("\(error!.localizedDescription)")
             } else if response!.mapItems.count > 0 {
                 for item in response!.mapItems {
-                    logger.debug("\(item.name!)")
+//                    logger.debug("\(item.name!)")
                     let pin = MKPointAnnotation()
                     pin.coordinate = item.placemark.coordinate
                     pin.title = item.name
