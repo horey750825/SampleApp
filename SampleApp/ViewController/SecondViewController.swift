@@ -18,6 +18,7 @@ class SecondViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     @IBOutlet weak var heightTableViewProfile: NSLayoutConstraint!
     
     let heightCell = 44
+    let profileInfoCount = HealthManager.sharedInstance.personalProfile.dataCount + 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +57,7 @@ class SecondViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     func setProfile() {
 //        self.tableViewProfile.separatorStyle = UITableViewCellSeparatorStyle.none
         self.tableViewProfile.isScrollEnabled = false
-        self.heightTableViewProfile.constant = 44 * 4
+        self.heightTableViewProfile.constant = CGFloat(heightCell * profileInfoCount)
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,11 +68,19 @@ class SecondViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.x > 0 {
             scrollView.contentOffset.x = 0
+    // #MARK - UITextFieldDelegate
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string.isEmpty {
+            return true
         }
+        let currentText = textField.text ?? ""
+        let replacementText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        return replacementText.isValidDouble(maxDecimalPlaces: 2)
     }
     
+    // #MARK - UITableViewDelegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return profileInfoCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -84,11 +93,17 @@ class SecondViewController: UIViewController, UIScrollViewDelegate, UITableViewD
             cell.textLabel?.text = "Age"
             cell.detailTextLabel?.text = "\(HealthManager.sharedInstance.personalProfile.age!)"
         case 2:
-            cell.textLabel?.text = "height"
+            cell.textLabel?.text = "height(cm)"
             cell.detailTextLabel?.text = "\(HealthManager.sharedInstance.personalProfile.height)"
         case 3:
-            cell.textLabel?.text = "weight"
+            cell.textLabel?.text = "weight(kg)"
             cell.detailTextLabel?.text = "\(HealthManager.sharedInstance.personalProfile.weight)"
+        case 4:
+            cell.textLabel?.text = "Walking Distance Today(km)"
+            cell.detailTextLabel?.text = "\(HealthManager.sharedInstance.personalProfile.walkingDistance)"
+        case 5:
+            cell.textLabel?.text = "Walking Distance Everyday(km)"
+            cell.detailTextLabel?.text = "\(HealthManager.sharedInstance.personalProfile.distanceEveryday)"
         default:
             cell.textLabel?.text = "Nikki"
             cell.detailTextLabel?.text = "0"
@@ -96,6 +111,26 @@ class SecondViewController: UIViewController, UIScrollViewDelegate, UITableViewD
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.row == 5 {
+            logger.debug()
+            let alert = UIAlertController(title: "Set Distance", message: "Please set only by numberic(km)", preferredStyle: .alert)
+            alert.addTextField(text: "", placeholder: "set the distnce(x.xx) you want", editingChangedTarget: nil, editingChangedSelector: nil)
+            alert.textFields?.first?.delegate = self
+            alert.addAction(title: "Cancel", style: .cancel, isEnabled: true, handler: nil)
+            alert.addAction(title: "OK", style: .default, isEnabled: true, handler: { (action) in
+                let inputText = alert.textFields!.first!.text!
+                if !inputText.isEmpty {
+                    HealthManager.sharedInstance.setDistanceEverydat(Double(inputText)!)
+                }
+                logger.debug("\(inputText)")
+                tableView.reloadData()
+            })
+            alert.show()
+        }
+     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(heightCell)

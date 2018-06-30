@@ -8,6 +8,12 @@
 
 import UIKit
 import CoreLocation
+import MapKit
+
+struct PinItem {
+    var route: MKRoute!
+    var mapItem: MKMapItem!
+}
 
 protocol LocationManagerDelegate : NSObjectProtocol {
     func gotCurrentLocation(currentLocation : CLLocation)

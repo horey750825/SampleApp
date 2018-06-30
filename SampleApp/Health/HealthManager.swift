@@ -15,6 +15,8 @@ struct PersonalProfile {
     var sex: String?
     var age: Int?
     var walkingDistance: Double = 0
+    var distanceEveryday: Double = 0
+    var didCheckDistanceEveryday = false
     
     let dataCount = 5
     
@@ -57,6 +59,11 @@ class HealthManager: NSObject {
     private override init() {
         super.init()
         profileCount = personalProfile.dataCount
+        let distance = Common.ud.double(forKey: Common.SET_WALKING_DISTANCE)
+        if distance > 0 {
+            personalProfile.didCheckDistanceEveryday = true
+            personalProfile.distanceEveryday = distance
+        }
     }
     
     func authorizeHealthKit(completion: @escaping (AuthResult) -> Void) {
@@ -173,7 +180,7 @@ class HealthManager: NSObject {
         
     }
 
-    func getPersonalProfile() {        
+    func getPersonalProfile() {
         self.getHeight { (success, height, error) in
             if success {
                 if let data = height {
@@ -241,5 +248,12 @@ class HealthManager: NSObject {
         if profileCount == 0 {
             self.delegate?.finishPersonalProfile()
         }
+    }
+    
+    func setDistanceEverydat(_ distance: Double) {
+        personalProfile.didCheckDistanceEveryday = true
+        personalProfile.distanceEveryday = distance
+        Common.ud.set(distance, forKey: Common.SET_WALKING_DISTANCE)
+        Common.ud.synchronize()
     }
 }

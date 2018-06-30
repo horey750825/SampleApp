@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class FirstViewController: UIViewController, HealthDelegate, LocationManagerDelegate, MKMapViewDelegate, UISearchBarDelegate {
+class FirstViewController: UIViewController, HealthDelegate, LocationManagerDelegate, MKMapViewDelegate, UISearchBarDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var mapView: MKMapView!
@@ -19,6 +19,7 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
     var didAuthorize = false
     var currentLocation : CLLocation!
     var selectedPin: MKAnnotationView!
+    var pinItemList = [PinItem]()
     let spanDigit = 0.02
     
     override func viewDidLoad() {
@@ -54,6 +55,8 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
         } else {
             if !didAuthorize {
                 self.getAllAuthorize()
+            } else {
+                LocationManager.sharedInstance.startUpdatingLocation()
             }
         }
     }
@@ -96,10 +99,26 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
         
         self.didAuthorize = true
     }
+    
+    func clearAllPinsAndOverlays() {
+        self.mapView.removeAnnotations(self.mapView.annotations)
+        self.mapView.removeOverlays(self.mapView.overlays)
+        self.pinItemList.removeAll()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // #MARK - UITextFieldDelegate
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string.isEmpty {
+            return true
+        }
+        let currentText = textField.text ?? ""
+        let replacementText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        return replacementText.isValidDouble(maxDecimalPlaces: 2)
     }
 
     // #MARK - HealthDelegate
@@ -109,6 +128,20 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
         DispatchQueue.main.async {
             self.labelMain.text = "walking distance today = \(HealthManager.sharedInstance.personalProfile.walkingDistance) km"
             self.labelMain.sizeToFit()
+            if !HealthManager.sharedInstance.personalProfile.didCheckDistanceEveryday {
+                let alert = UIAlertController(title: "Set Distance", message: "Please set only by numberic(km)", preferredStyle: .alert)
+                alert.addTextField(text: "", placeholder: "set the distnce(x.xx) you want", editingChangedTarget: nil, editingChangedSelector: nil)
+                alert.textFields?.first?.delegate = self
+                alert.addAction(title: "Cancel", style: .cancel, isEnabled: true, handler: nil)
+                alert.addAction(title: "OK", style: .default, isEnabled: true, handler: { (action) in
+                    let inputText = alert.textFields!.first!.text!
+                    if !inputText.isEmpty {
+                        HealthManager.sharedInstance.setDistanceEverydat(Double(inputText)!)
+                    }
+                    logger.debug("\(inputText)")
+                })
+                alert.show()
+            }
         }
     }
     
@@ -124,6 +157,7 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
     // #MARK - UISearchBarDelegate
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.view.endEditing(true)
+        self.clearAllPinsAndOverlays()
         
         let request = MKLocalSearchRequest()
         request.region = self.mapView.region
@@ -148,8 +182,8 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.text = ""
-        self.mapView.removeAnnotations(self.mapView.annotations)
+        searchBar.clear()
+        self.clearAllPinsAndOverlays()
     }
     
     // #MARK - MKMapViewDelegate

@@ -65,6 +65,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
             
             Common.ud.set(userData, forKey: Common.USER_REGISTER_DATA)
             Common.ud.set(true, forKey: Common.DID_SIGNIN)
+            Common.ud.synchronize()
             
             dismiss(animated: true, completion: {
                 logger.debug("")

@@ -94,7 +94,7 @@
                                     <constraint firstAttribute="width" constant="80" id="dQG-ZZ-IO5"/>
                                 </constraints>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahE-n2-7Lu">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahE-n2-7Lu">
                                 <rect key="frame" x="0.0" y="148" width="375" height="470"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nlx-ec-uRB">
@@ -103,7 +103,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rfj-Lu-WF5">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rfj-Lu-WF5">
                                         <rect key="frame" x="0.0" y="69" width="375" height="128"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -121,16 +121,11 @@
                                     <constraint firstItem="rfj-Lu-WF5" firstAttribute="width" secondItem="ahE-n2-7Lu" secondAttribute="width" id="Gf3-iQ-1tK"/>
                                     <constraint firstItem="Nlx-ec-uRB" firstAttribute="top" secondItem="ahE-n2-7Lu" secondAttribute="top" constant="10" id="OsR-hY-bff"/>
                                     <constraint firstItem="rfj-Lu-WF5" firstAttribute="centerX" secondItem="ahE-n2-7Lu" secondAttribute="centerX" id="Tb0-i8-7m4"/>
-                                    <constraint firstAttribute="height" constant="470" id="XEx-BJ-uPJ"/>
                                     <constraint firstAttribute="bottom" secondItem="Nlx-ec-uRB" secondAttribute="bottom" constant="426" id="kCa-yf-5l1"/>
                                     <constraint firstItem="rfj-Lu-WF5" firstAttribute="top" secondItem="Nlx-ec-uRB" secondAttribute="bottom" constant="25" id="qlX-mG-7FF"/>
                                     <constraint firstItem="Nlx-ec-uRB" firstAttribute="leading" secondItem="ahE-n2-7Lu" secondAttribute="leading" constant="30" id="t8V-dQ-Rmb"/>
+                                    <constraint firstAttribute="height" constant="470" id="uL0-gX-Jvj"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="XEx-BJ-uPJ"/>
-                                    </mask>
-                                </variation>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960780000005" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -143,14 +138,13 @@
                             <constraint firstItem="5Rw-ny-w7s" firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="W9D-AQ-slv"/>
                             <constraint firstItem="zEq-FU-wV5" firstAttribute="leading" secondItem="5Rw-ny-w7s" secondAttribute="trailing" constant="50" id="bzk-Z6-tvq"/>
                             <constraint firstItem="5Rw-ny-w7s" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" constant="20" id="dtr-PV-GNl"/>
-                            <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="ahE-n2-7Lu" secondAttribute="bottom" id="oGz-wu-4g2"/>
                             <constraint firstItem="ahE-n2-7Lu" firstAttribute="width" secondItem="QS5-Rx-YEW" secondAttribute="width" id="sz7-bf-B1O"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Menu" image="menu" id="cPa-gy-q4n"/>
                     <connections>
-                        <outlet property="heightScrollView" destination="XEx-BJ-uPJ" id="q2o-EK-bRh"/>
+                        <outlet property="heightScrollView" destination="uL0-gX-Jvj" id="m1J-UP-MGY"/>
                         <outlet property="heightTableViewProfile" destination="FVt-mn-8kI" id="Zpq-I6-rsD"/>
                         <outlet property="imageViewUser" destination="5Rw-ny-w7s" id="XFh-rc-WgK"/>
                         <outlet property="labelUserName" destination="zEq-FU-wV5" id="9lP-Ee-k6J"/>
