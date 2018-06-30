@@ -182,33 +182,31 @@ class HealthManager: NSObject {
 
     func getPersonalProfile() {
         self.getHeight { (success, height, error) in
-            if success {
+            if error != nil {
+                logger.debug("getHeight error = \(error!.localizedDescription)")
+            } else {
                 if let data = height {
                     self.personalProfile.height = data
-                    self.checkDataCount()
                 }
-            } else {
-                // error handler
-                logger.debug("getHeight error = \(error!.localizedDescription)")
+                self.checkDataCount()
             }
         }
         
         self.getWeight { (success, weight, error) in
-            if success {
+            if error != nil {
+                logger.debug("getWeight error = \(error!.localizedDescription)")
+            } else {
                 if let data = weight {
                     self.personalProfile.weight = data
-                    self.checkDataCount()
                 }
-            } else {
-                // error handler
-                logger.debug("getWeight error = \(error!.localizedDescription)")
+                self.checkDataCount()
             }
         }
         
         self.getDistance { (distance, error) in
             if error == nil {
                 logger.debug("\(distance)")
-                self.personalProfile.walkingDistance = distance
+                self.personalProfile.walkingDistance = distance / 1000
                 self.checkDataCount()
             } else {
                 logger.debug(error?.localizedDescription)
