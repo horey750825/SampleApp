@@ -72,5 +72,11 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         logger.debug("status \(status.rawValue)")
+        switch status {
+        case .authorizedWhenInUse, .authorizedAlways:
+            self.startUpdatingLocation()
+        default:
+            self.stopUpdatingLocation()
+        }
     }
 }
