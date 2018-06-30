@@ -25,6 +25,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     var delegate : LocationManagerDelegate?
     
     var didCheckAuthorization = false
+    var updating = false
     
     private override init() {
         super.init()
@@ -54,13 +55,19 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     func stopUpdatingLocation() {
         DispatchQueue.main.async {
-            self.manager.stopUpdatingLocation()
+            if self.updating {
+                self.manager.stopUpdatingLocation()
+                self.updating = false
+            }
         }
     }
     
     func startUpdatingLocation() {
         DispatchQueue.main.async {
-            self.manager.startUpdatingLocation()
+            if !self.updating {
+                self.manager.startUpdatingLocation()
+                self.updating = true
+            }
         }
     }
     
