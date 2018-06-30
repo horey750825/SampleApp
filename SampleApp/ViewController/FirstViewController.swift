@@ -19,6 +19,7 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
     var didAuthorize = false
     var currentLocation : CLLocation!
     var selectedPin: MKAnnotationView!
+    let spanDigit = 0.02
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +32,7 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
         searchBar.delegate = self
         
         //map
-        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let span = MKCoordinateSpan(latitudeDelta: spanDigit, longitudeDelta: spanDigit)
         let region = MKCoordinateRegion(center: self.mapView.centerCoordinate, span: span)
         self.mapView.region = region
         
@@ -105,6 +106,10 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
     func finishPersonalProfile() {
         HealthManager.sharedInstance.didGetProfile = true
         logger.debug("\(HealthManager.sharedInstance.personalProfile.toString())")
+        DispatchQueue.main.async {
+            self.labelMain.text = "walking distance today = \(HealthManager.sharedInstance.personalProfile.walkingDistance) km"
+            self.labelMain.sizeToFit()
+        }
     }
     
     // #MARK - LocationManagerDelegate
@@ -169,8 +174,6 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
             let route = response!.routes[0]
             let distance = String(format: "%.2f", route.distance / 1000)
             self.labelDescription.text = "\(distance) km, \(Int(route.expectedTravelTime) / 60) mins"
-            self.labelMain.text = self.selectedPin.annotation!.title!!
-            self.labelMain.sizeToFit()
             self.mapView.removeOverlays(self.mapView.overlays)
             self.mapView.add(route.polyline)
         }

@@ -14,15 +14,17 @@ struct PersonalProfile {
     var weight : Double = 0
     var sex: String?
     var age: Int?
+    var walkingDistance: Double = 0
     
-    let dataCount = 4
+    let dataCount = 5
     
     func toString() -> String {
         var result = "Personal "
         result += "height = \(height) cm\n"
         result += "weight = \(weight) cm\n"
         result += "age = \(age!)\n"
-        result += "sex = \(sex!)"
+        result += "sex = \(sex!)\n"
+        result += "walking distance = \(walkingDistance)"
         return result
     }
 }
@@ -44,15 +46,17 @@ class HealthManager: NSObject {
 
     var personalProfile = PersonalProfile()
     var didGetProfile = false
-    let profileCount = 2
+    var profileCount = 0
     let bodyHeight = HKObjectType.quantityType(forIdentifier: .height)!
     let bodyMass = HKObjectType.quantityType(forIdentifier: .bodyMass)!
     let biologicalSex = HKObjectType.characteristicType(forIdentifier: .biologicalSex)!
     let personalAge = HKObjectType.characteristicType(forIdentifier: .dateOfBirth)!
+    let walkingDistance = HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!
     
     
     private override init() {
         super.init()
+        profileCount = personalProfile.dataCount
     }
     
     func authorizeHealthKit(completion: @escaping (AuthResult) -> Void) {
@@ -60,10 +64,13 @@ class HealthManager: NSObject {
             bodyHeight,
             bodyMass,
             biologicalSex,
-            personalAge
+            personalAge,
+            walkingDistance
         ]
+        
+        
         let toShare = Set(arrayLiteral: HKSampleType.quantityType(forIdentifier: .height)!,
-                          HKSampleType.quantityType(forIdentifier: .bodyMass)!)
+                          HKSampleType.quantityType(forIdentifier: .bodyMass)!, HKSampleType.quantityType(forIdentifier: .distanceWalkingRunning)!)
         if !HKHealthStore.isHealthDataAvailable() {
             logger.debug()
             return
@@ -131,17 +138,47 @@ class HealthManager: NSObject {
         }
     }
     
-    func getPersonalProfile() {
-        var count = personalProfile.dataCount
+    func getDistance(completion:@escaping (Double, Error?) -> Void) {
+        let distanceObject = HKSampleType.quantityType(forIdentifier: .distanceWalkingRunning)
         
+        let date = Date()
+        let cal = Calendar(identifier: Calendar.Identifier.gregorian)
+        let newDate = cal.startOfDay(for: date)
+        let predicate = HKQuery.predicateForSamples(withStart: newDate, end: Date(), options: .strictStartDate)
+        var interval = DateComponents()
+        interval.day = 1
+        
+        let query = HKStatisticsCollectionQuery(quantityType: distanceObject!, quantitySamplePredicate: predicate, options: .cumulativeSum, anchorDate: newDate as Date, intervalComponents:interval)
+        
+        query.initialResultsHandler = {query, results, error -> Void in
+            if error != nil {
+                logger.debug(error.debugDescription)
+                completion(-1, error)
+                return
+            }
+            if results!.statistics().isEmpty {
+                completion(0, nil)
+            }
+            for statistic in (results?.statistics())! {
+                let caloriesUnit = HKUnit.meter()
+                let quanlity = statistic.sumQuantity()
+                let value = quanlity?.doubleValue(for: caloriesUnit)
+                logger.debug("\(statistic.startDate) -- \(statistic.endDate) and \(String(describing: value))")
+                completion(value!, nil)
+            }
+            
+        }
+        
+        healthStore.execute(query)
+        
+    }
+
+    func getPersonalProfile() {        
         self.getHeight { (success, height, error) in
             if success {
                 if let data = height {
                     self.personalProfile.height = data
-                    count -= 1
-                    if count == 0 {
-                        self.delegate?.finishPersonalProfile()
-                    }
+                    self.checkDataCount()
                 }
             } else {
                 // error handler
@@ -153,10 +190,7 @@ class HealthManager: NSObject {
             if success {
                 if let data = weight {
                     self.personalProfile.weight = data
-                    count -= 1
-                    if count == 0 {
-                        self.delegate?.finishPersonalProfile()
-                    }
+                    self.checkDataCount()
                 }
             } else {
                 // error handler
@@ -164,13 +198,20 @@ class HealthManager: NSObject {
             }
         }
         
+        self.getDistance { (distance, error) in
+            if error == nil {
+                logger.debug("\(distance)")
+                self.personalProfile.walkingDistance = distance
+                self.checkDataCount()
+            } else {
+                logger.debug(error?.localizedDescription)
+            }
+        }
+        
         do {
             let age = try self.getAge()
             self.personalProfile.age = age
-            count -= 1
-            if count == 0 {
-                self.delegate?.finishPersonalProfile()
-            }
+            checkDataCount()
         } catch {
             logger.debug("getAgeProblem")
         }
@@ -189,13 +230,16 @@ class HealthManager: NSObject {
             } else {
                 self.personalProfile.sex = "notset"
             }
-            count -= 1
-            if count == 0 {
-                self.delegate?.finishPersonalProfile()
-            }
+            checkDataCount()
         } catch {
             logger.debug("getSexProblem")
         }
-        
+    }
+    
+    func checkDataCount() {
+        profileCount -= 1
+        if profileCount == 0 {
+            self.delegate?.finishPersonalProfile()
+        }
     }
 }
