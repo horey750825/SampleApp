@@ -8,31 +8,43 @@
 
 import UIKit
 
-class SecondViewController: UIViewController, UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate {
+class SecondViewController: UIViewController, UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
-    @IBOutlet weak var heightScrollView: NSLayoutConstraint!
+
     @IBOutlet weak var labelUserName: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageViewUser: UIImageView!
+    @IBOutlet weak var viewContener: UIView!
     @IBOutlet weak var tableViewProfile: UITableView!
     @IBOutlet weak var heightTableViewProfile: NSLayoutConstraint!
+    @IBOutlet weak var heightViewContener: NSLayoutConstraint!
     
     let heightCell = 44
     let profileInfoCount = HealthManager.sharedInstance.personalProfile.dataCount + 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        logger.debug("scroll view width = \(self.scrollView.frame.width), screenView = \(DeviceProfile.screenWidth)")
         self.scrollView.delegate = self
-//        self.scrollView.bounces = true
-//        self.scrollView.alwaysBounceVertical = true
-        self.scrollView.contentSize = CGSize(width: DeviceProfile.screenWidth, height: Double(heightScrollView.constant))
         prepareSetting()
-        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // self.heightViewContener.constant = lastViewMaxY - scrollViewHeight
+        let viewHeight = self.tableViewProfile.frame.maxY - self.scrollView.frame.size.height
+        if viewHeight > 0 {
+            self.heightViewContener.constant = viewHeight
+        } else {
+            self.heightViewContener.constant = 0
+        }
     }
     
     func prepareSetting() {
@@ -65,9 +77,10 @@ class SecondViewController: UIViewController, UIScrollViewDelegate, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
+    // #MARK - UIScrollViewDelegate
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.x > 0 {
-            scrollView.contentOffset.x = 0
+    }
+    
     // #MARK - UITextFieldDelegate
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if string.isEmpty {
