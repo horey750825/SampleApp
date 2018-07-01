@@ -38,12 +38,17 @@
                                 <rect key="frame" x="0.0" y="159" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kLe-OO-8CI">
+                                <rect key="frame" x="323" y="566" width="22" height="22"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="8Kj-gb-WCq" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width" id="3sK-hP-Qfg"/>
+                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="kLe-OO-8CI" secondAttribute="trailing" constant="30" id="6jP-dr-wNm"/>
                             <constraint firstItem="d74-5Z-WJ4" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width" id="9C9-Tv-CKx"/>
                             <constraint firstItem="KQZ-1w-vlD" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="Lef-BL-OJl"/>
+                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="bottom" secondItem="kLe-OO-8CI" secondAttribute="bottom" constant="30" id="Mvd-U0-GrM"/>
                             <constraint firstItem="KQZ-1w-vlD" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" constant="50" id="bk5-Hj-o0F"/>
                             <constraint firstItem="A5M-7J-77L" firstAttribute="top" secondItem="KQZ-1w-vlD" secondAttribute="bottom" constant="8" symbolic="YES" id="cfb-er-3JN"/>
                             <constraint firstItem="8Kj-gb-WCq" firstAttribute="centerX" secondItem="PQr-Ze-W5v" secondAttribute="centerX" id="coQ-16-pdN"/>
@@ -57,6 +62,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Main" image="first" id="acW-dT-cKf"/>
                     <connections>
+                        <outlet property="buttonComeBackToCurrent" destination="kLe-OO-8CI" id="NUg-s6-SFM"/>
                         <outlet property="labelDescription" destination="A5M-7J-77L" id="ZgB-cH-cbu"/>
                         <outlet property="labelMain" destination="KQZ-1w-vlD" id="Bh2-7L-Cc2"/>
                         <outlet property="mapView" destination="8Kj-gb-WCq" id="7o0-zB-tkF"/>

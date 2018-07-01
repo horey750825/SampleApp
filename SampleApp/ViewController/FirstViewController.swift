@@ -11,6 +11,7 @@ import MapKit
 
 class FirstViewController: UIViewController, HealthDelegate, LocationManagerDelegate, MKMapViewDelegate, UISearchBarDelegate, UITextFieldDelegate {
 
+    @IBOutlet weak var buttonComeBackToCurrent: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var labelMain: UILabel!
@@ -20,6 +21,7 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
     var currentLocation : CLLocation!
     var selectedPin: MKAnnotationView!
     var pinItemList = [PinItem]()
+    var gotFIrstTimePostion = false
     let spanDigit = 0.02
     
     override func viewDidLoad() {
@@ -70,6 +72,11 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
         
         //set UI
         setLabel()
+        buttonComeBackToCurrent.addTarget(self, action: #selector(tapButtonComeBackToCurrent(sender:)), for: .touchUpInside)
+    }
+    
+    @objc func tapButtonComeBackToCurrent(sender: UIButton) {
+        self.mapView.centerCoordinate = self.currentLocation.coordinate
     }
     
     func setLabel() {
@@ -150,8 +157,13 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
     func gotCurrentLocation(currentLocation: CLLocation) {
 //        logger.debug("location \(currentLocation.coordinate.latitude), \(currentLocation.coordinate.longitude)")
         DispatchQueue.main.async {
-            self.mapView.centerCoordinate = currentLocation.coordinate
+            if !self.gotFIrstTimePostion {
+                self.mapView.centerCoordinate = currentLocation.coordinate
+                self.gotFIrstTimePostion = true
+            }
             self.currentLocation = currentLocation
+                        
+            // show the distance check alert
             if !HealthManager.sharedInstance.personalProfile.didCheckDistanceEveryday {
                 let alert = UIAlertController(title: "Set Distance", message: "Please set only by numberic(km)", preferredStyle: .alert)
                 alert.addTextField(text: "", placeholder: "set the distnce(x.xx) you want", editingChangedTarget: nil, editingChangedSelector: nil)
