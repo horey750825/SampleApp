@@ -39,6 +39,9 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
         let region = MKCoordinateRegion(center: self.mapView.centerCoordinate, span: span)
         self.mapView.region = region
         
+        let gestureLongPress = UILongPressGestureRecognizer(target: self, action: #selector(self.actionForMap(gestureRecognizer:)))
+        mapView.addGestureRecognizer(gestureLongPress)
+        
         // UI
         prepareSetting()
         
@@ -73,6 +76,15 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
         //set UI
         setLabel()
         buttonComeBackToCurrent.addTarget(self, action: #selector(tapButtonComeBackToCurrent(sender:)), for: .touchUpInside)
+    }
+    
+    @objc func actionForMap(gestureRecognizer: UILongPressGestureRecognizer){
+        clearAllPinsAndOverlays()
+        let touchPoint = gestureRecognizer.location(in: self.mapView)
+        let newCoordinates = self.mapView.convert(touchPoint, toCoordinateFrom: self.mapView)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = newCoordinates
+        self.mapView.addAnnotation(annotation)
     }
     
     @objc func tapButtonComeBackToCurrent(sender: UIButton) {
