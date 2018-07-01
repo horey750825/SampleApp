@@ -32,30 +32,33 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Kj-gb-WCq">
-                                <rect key="frame" x="0.0" y="151" width="375" height="467"/>
+                                <rect key="frame" x="0.0" y="149" width="375" height="469"/>
                             </mapView>
-                            <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d74-5Z-WJ4">
-                                <rect key="frame" x="0.0" y="95" width="375" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kLe-OO-8CI">
                                 <rect key="frame" x="323" y="566" width="22" height="22"/>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="82N-tC-hGV">
+                                <rect key="frame" x="0.0" y="93" width="375" height="56"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="jS1-sS-1tS"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="8Kj-gb-WCq" firstAttribute="top" secondItem="82N-tC-hGV" secondAttribute="bottom" id="1iR-6c-4Td"/>
                             <constraint firstItem="8Kj-gb-WCq" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width" id="3sK-hP-Qfg"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="kLe-OO-8CI" secondAttribute="trailing" constant="30" id="6jP-dr-wNm"/>
-                            <constraint firstItem="d74-5Z-WJ4" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width" id="9C9-Tv-CKx"/>
+                            <constraint firstItem="82N-tC-hGV" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="ES7-OP-vaY"/>
                             <constraint firstItem="KQZ-1w-vlD" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="Lef-BL-OJl"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="bottom" secondItem="kLe-OO-8CI" secondAttribute="bottom" constant="30" id="Mvd-U0-GrM"/>
+                            <constraint firstItem="82N-tC-hGV" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width" id="QuD-M6-Dfx"/>
+                            <constraint firstItem="82N-tC-hGV" firstAttribute="top" secondItem="A5M-7J-77L" secondAttribute="bottom" constant="8" id="bYo-u7-hN2"/>
                             <constraint firstItem="KQZ-1w-vlD" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" constant="10" id="bk5-Hj-o0F"/>
                             <constraint firstItem="A5M-7J-77L" firstAttribute="top" secondItem="KQZ-1w-vlD" secondAttribute="bottom" constant="8" symbolic="YES" id="cfb-er-3JN"/>
                             <constraint firstItem="8Kj-gb-WCq" firstAttribute="centerX" secondItem="PQr-Ze-W5v" secondAttribute="centerX" id="coQ-16-pdN"/>
                             <constraint firstItem="A5M-7J-77L" firstAttribute="centerX" secondItem="KQZ-1w-vlD" secondAttribute="centerX" id="e1l-AV-tCB"/>
-                            <constraint firstItem="d74-5Z-WJ4" firstAttribute="centerX" secondItem="PQr-Ze-W5v" secondAttribute="centerX" id="fdP-N4-5J4"/>
-                            <constraint firstItem="8Kj-gb-WCq" firstAttribute="top" secondItem="d74-5Z-WJ4" secondAttribute="bottom" id="k2m-AY-s2c"/>
-                            <constraint firstItem="d74-5Z-WJ4" firstAttribute="top" secondItem="A5M-7J-77L" secondAttribute="bottom" constant="10" id="lTR-93-aG6"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="bottom" secondItem="8Kj-gb-WCq" secondAttribute="bottom" id="s8W-P3-8fT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
@@ -66,7 +69,7 @@
                         <outlet property="labelDescription" destination="A5M-7J-77L" id="ZgB-cH-cbu"/>
                         <outlet property="labelMain" destination="KQZ-1w-vlD" id="Bh2-7L-Cc2"/>
                         <outlet property="mapView" destination="8Kj-gb-WCq" id="7o0-zB-tkF"/>
-                        <outlet property="searchBar" destination="d74-5Z-WJ4" id="1jr-LS-uNQ"/>
+                        <outlet property="viewSearchBar" destination="82N-tC-hGV" id="q93-yE-lHu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>

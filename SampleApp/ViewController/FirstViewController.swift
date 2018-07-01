@@ -12,7 +12,7 @@ import MapKit
 class FirstViewController: UIViewController, HealthDelegate, LocationManagerDelegate, MKMapViewDelegate, UISearchBarDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var buttonComeBackToCurrent: UIButton!
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var viewSearchBar: UIView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var labelMain: UILabel!
     @IBOutlet weak var labelDescription: UILabel!
@@ -24,6 +24,8 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
     var gotFIrstTimePostion = false
     let spanDigit = 0.02
     
+    var searchController: UISearchController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -32,7 +34,16 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
         HealthManager.sharedInstance.delegate = self
         LocationManager.sharedInstance.delegate = self
         mapView.delegate = self
-        searchBar.delegate = self
+        
+        // test
+        let resultTableViewController = ResultTableViewController()
+        searchController = UISearchController(searchResultsController: resultTableViewController)
+        searchController.searchResultsUpdater = resultTableViewController
+        resultTableViewController.mapView = self.mapView
+        let searchBar = searchController.searchBar
+        searchBar.sizeToFit()
+        viewSearchBar.addSubview(searchBar)
+        // test
         
         //map
         let span = MKCoordinateSpan(latitudeDelta: spanDigit, longitudeDelta: spanDigit)
