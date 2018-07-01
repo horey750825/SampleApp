@@ -92,30 +92,38 @@ class HealthManager: NSObject {
         }
     }
     
-    func getHeight(completion: @escaping (Bool, Double?, Error?) -> Void) {
+    func getHeight(completion: @escaping (Double, Error?) -> Void) {
         let type = HKSampleType.quantityType(forIdentifier: .height)!
         let query = HKSampleQuery(sampleType: type, predicate: nil, limit: 1, sortDescriptors: nil) { (sampleQuery, sampleData, error) in
-            if let data = sampleData?.first as? HKQuantitySample {
-                logger.debug("\(data.quantity)")
-                completion(true, data.quantity.doubleValue(for: HKUnit.meterUnit(with: .centi)), error)
-            } else {
+            guard error == nil else {
                 logger.debug("\(error.debugDescription)")
-                completion(false, nil, error)
+                completion(0, error)
+                return
             }
+            guard let data = sampleData?.first as? HKQuantitySample else {
+                completion(0, nil)
+                return
+            }
+            logger.debug("\(data.quantity)")
+            completion(data.quantity.doubleValue(for: HKUnit.meterUnit(with: .centi)), error)
         }
         healthStore.execute(query)
     }
     
-    func getWeight(completion: @escaping (Bool, Double?, Error?) -> Void)  {
+    func getWeight(completion: @escaping (Double, Error?) -> Void)  {
         let type = HKSampleType.quantityType(forIdentifier: .bodyMass)!
         let query = HKSampleQuery(sampleType: type, predicate: nil, limit: 1, sortDescriptors: nil) { (sampleQuery, sampleData, error) in
-            if let data = sampleData?.first as? HKQuantitySample {
-                logger.debug("\(data.quantity)")
-                completion(true, data.quantity.doubleValue(for: HKUnit.gramUnit(with: .kilo)), error)
-            } else {
+            guard error == nil else {
                 logger.debug("\(error.debugDescription)")
-                completion(false, nil, error)
+                completion(0, error)
+                return
             }
+            guard let data = sampleData?.first as? HKQuantitySample else {
+                completion(0, nil)
+                return
+            }
+            logger.debug("\(data.quantity)")
+            completion(data.quantity.doubleValue(for: HKUnit.gramUnit(with: .kilo)), error)
         }
         healthStore.execute(query)
     }
@@ -158,13 +166,14 @@ class HealthManager: NSObject {
         let query = HKStatisticsCollectionQuery(quantityType: distanceObject!, quantitySamplePredicate: predicate, options: .cumulativeSum, anchorDate: newDate as Date, intervalComponents:interval)
         
         query.initialResultsHandler = {query, results, error -> Void in
-            if error != nil {
-                logger.debug(error.debugDescription)
-                completion(-1, error)
+            guard error == nil else {
+                logger.debug("\(error.debugDescription)")
+                completion(0, error)
                 return
             }
             if results!.statistics().isEmpty {
                 completion(0, nil)
+                return
             }
             for statistic in (results?.statistics())! {
                 let caloriesUnit = HKUnit.meter()
@@ -181,35 +190,31 @@ class HealthManager: NSObject {
     }
 
     func getPersonalProfile() {
-        self.getHeight { (success, height, error) in
+        self.getHeight { (height, error) in
             if error != nil {
                 logger.debug("getHeight error = \(error!.localizedDescription)")
             } else {
-                if let data = height {
-                    self.personalProfile.height = data
-                }
+                self.personalProfile.height = height
                 self.checkDataCount()
             }
         }
-        
-        self.getWeight { (success, weight, error) in
+                
+        self.getWeight { (weight, error) in
             if error != nil {
                 logger.debug("getWeight error = \(error!.localizedDescription)")
             } else {
-                if let data = weight {
-                    self.personalProfile.weight = data
-                }
+                self.personalProfile.weight = weight
                 self.checkDataCount()
             }
         }
         
         self.getDistance { (distance, error) in
-            if error == nil {
+            if error != nil {
+                logger.debug(error?.localizedDescription)
+            } else {
                 logger.debug("\(distance)")
                 self.personalProfile.walkingDistance = distance / 1000
                 self.checkDataCount()
-            } else {
-                logger.debug(error?.localizedDescription)
             }
         }
         
