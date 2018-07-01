@@ -22,33 +22,30 @@ PODS:
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
-  - RxCocoa (4.1.2):
-    - RxSwift (~> 4.0)
-  - RxSwift (4.1.2)
-  - SwifterSwift (4.3.0):
-    - SwifterSwift/AppKit (= 4.3.0)
-    - SwifterSwift/CoreGraphics (= 4.3.0)
-    - SwifterSwift/CoreLocation (= 4.3.0)
-    - SwifterSwift/Foundation (= 4.3.0)
-    - SwifterSwift/MapKit (= 4.3.0)
-    - SwifterSwift/SwiftStdlib (= 4.3.0)
-    - SwifterSwift/UIKit (= 4.3.0)
-  - SwifterSwift/AppKit (4.3.0)
-  - SwifterSwift/CoreGraphics (4.3.0)
-  - SwifterSwift/CoreLocation (4.3.0)
-  - SwifterSwift/Foundation (4.3.0)
-  - SwifterSwift/MapKit (4.3.0)
-  - SwifterSwift/SwiftStdlib (4.3.0)
-  - SwifterSwift/UIKit (4.3.0)
-  - XCGLogger (6.0.2):
-    - XCGLogger/Core (= 6.0.2)
-  - XCGLogger/Core (6.0.2):
+  - SwifterSwift (4.4.0):
+    - SwifterSwift/AppKit (= 4.4.0)
+    - SwifterSwift/CoreGraphics (= 4.4.0)
+    - SwifterSwift/CoreLocation (= 4.4.0)
+    - SwifterSwift/Foundation (= 4.4.0)
+    - SwifterSwift/MapKit (= 4.4.0)
+    - SwifterSwift/SpriteKit (= 4.4.0)
+    - SwifterSwift/SwiftStdlib (= 4.4.0)
+    - SwifterSwift/UIKit (= 4.4.0)
+  - SwifterSwift/AppKit (4.4.0)
+  - SwifterSwift/CoreGraphics (4.4.0)
+  - SwifterSwift/CoreLocation (4.4.0)
+  - SwifterSwift/Foundation (4.4.0)
+  - SwifterSwift/MapKit (4.4.0)
+  - SwifterSwift/SpriteKit (4.4.0)
+  - SwifterSwift/SwiftStdlib (4.4.0)
+  - SwifterSwift/UIKit (4.4.0)
+  - XCGLogger (6.0.4):
+    - XCGLogger/Core (= 6.0.4)
+  - XCGLogger/Core (6.0.4):
     - ObjcExceptionBridging
 
 DEPENDENCIES:
   - GoogleSignIn
-  - RxCocoa (~> 4.0)
-  - RxSwift (~> 4.0)
   - SwifterSwift
   - XCGLogger
 
@@ -59,8 +56,6 @@ SPEC REPOS:
     - GTMOAuth2
     - GTMSessionFetcher
     - ObjcExceptionBridging
-    - RxCocoa
-    - RxSwift
     - SwifterSwift
     - XCGLogger
 
@@ -70,11 +65,9 @@ SPEC CHECKSUMS:
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
-  RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
-  RxSwift: e49536837d9901277638493ea537394d4b55f570
-  SwifterSwift: f3fce2b9fc5b9d8fda6eec33825e5243c60aebba
-  XCGLogger: c9601cae9a8912de34a58666ba931ed3d624dd31
+  SwifterSwift: 1ce0e31801ddd3a2bd3256626275425adb01067a
+  XCGLogger: 4fc1bc0bdd5828cb8dc8da7a843536cda1bea8f3
 
-PODFILE CHECKSUM: 7b5227e52b28748cc3592cd3061a47a7c39ae037
+PODFILE CHECKSUM: 16d2b804f8cfccf0af08f81de6b4c8d56933c642
 
 COCOAPODS: 1.5.3
