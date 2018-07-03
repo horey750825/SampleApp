@@ -3,8 +3,18 @@
 This app is developed by Swift 4.1.
 
 * MapKit
+    * Get the current position
+    * Search the store and calculate the distance
+
 * GoogleSingIn
+    * get the user name and image.
 * HealthKit
+    * get the user information
+        * Height
+        * Weight
+        * Age
+        * Sex
+        * The walking distance today
 
 ## UserGuide
 
