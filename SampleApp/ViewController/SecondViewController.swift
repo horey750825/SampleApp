@@ -20,12 +20,16 @@ class SecondViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     @IBOutlet weak var heightViewContener: NSLayoutConstraint!
     
     let heightCell = 44
-    let profileInfoCount = HealthManager.sharedInstance.personalProfile.dataCount + 1
+    let dataTitleList = [
+        "Sex", "Age", "height(cm)", "weight(kg)", "Walking Distance Today(km)", "Walking Distance Everyday(km)"
+    ]
+    var dataList = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.scrollView.delegate = self
         prepareSetting()
+        dataList = HealthManager.sharedInstance.dataListForTableView
     }
     
     override func viewWillLayoutSubviews() {
@@ -69,7 +73,7 @@ class SecondViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     func setProfile() {
 //        self.tableViewProfile.separatorStyle = UITableViewCellSeparatorStyle.none
         self.tableViewProfile.isScrollEnabled = false
-        self.heightTableViewProfile.constant = CGFloat(heightCell * profileInfoCount)
+        self.heightTableViewProfile.constant = CGFloat(heightCell * dataTitleList.count)
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,35 +97,20 @@ class SecondViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     
     // #MARK - UITableViewDelegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return profileInfoCount
+        return dataTitleList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
-        switch indexPath.row {
-        case 0:
-            cell.textLabel?.text = "Sex"
-            cell.detailTextLabel?.text = "\(HealthManager.sharedInstance.personalProfile.sex!)"
-        case 1:
-            cell.textLabel?.text = "Age"
-            cell.detailTextLabel?.text = "\(HealthManager.sharedInstance.personalProfile.age!)"
-        case 2:
-            cell.textLabel?.text = "height(cm)"
-            cell.detailTextLabel?.text = "\(HealthManager.sharedInstance.personalProfile.height)"
-        case 3:
-            cell.textLabel?.text = "weight(kg)"
-            cell.detailTextLabel?.text = "\(HealthManager.sharedInstance.personalProfile.weight)"
-        case 4:
-            cell.textLabel?.text = "Walking Distance Today(km)"
-            cell.detailTextLabel?.text = "\(HealthManager.sharedInstance.personalProfile.walkingDistance.rounded(toPlaces: 2))"
-        case 5:
-            cell.textLabel?.text = "Walking Distance Everyday(km)"
-            cell.detailTextLabel?.text = "\(HealthManager.sharedInstance.personalProfile.distanceEveryday.rounded(toPlaces: 2))"
-        default:
-            cell.textLabel?.text = "Nikki"
-            cell.detailTextLabel?.text = "0"
+        cell.textLabel?.text = dataTitleList[indexPath.row]
+        if dataList.count == 0 {
+            cell.detailTextLabel?.text = ""
+        } else {
+            cell.detailTextLabel?.text = dataList[indexPath.row]
         }
-        
+        if indexPath.row != 5 {
+            cell.accessoryType = .none
+        }
         return cell
     }
     

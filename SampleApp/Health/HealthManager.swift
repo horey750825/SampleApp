@@ -54,6 +54,7 @@ class HealthManager: NSObject {
     let biologicalSex = HKObjectType.characteristicType(forIdentifier: .biologicalSex)!
     let personalAge = HKObjectType.characteristicType(forIdentifier: .dateOfBirth)!
     let walkingDistance = HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!
+    var dataListForTableView = [String]()
     
     
     private override init() {
@@ -249,6 +250,14 @@ class HealthManager: NSObject {
     func checkDataCount() {
         profileCount -= 1
         if profileCount == 0 {
+            self.dataListForTableView = [
+                HealthManager.sharedInstance.personalProfile.sex!,
+                String(HealthManager.sharedInstance.personalProfile.age!),
+                String(HealthManager.sharedInstance.personalProfile.height),
+                String(HealthManager.sharedInstance.personalProfile.weight),
+                String(HealthManager.sharedInstance.personalProfile.walkingDistance.rounded(toPlaces: 2)),
+                String(HealthManager.sharedInstance.personalProfile.distanceEveryday.rounded(toPlaces: 2))
+            ]
             self.delegate?.finishPersonalProfile()
         }
     }
