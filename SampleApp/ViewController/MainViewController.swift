@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  MainViewController.swift
 //  SampleApp
 //
 //  Created by Nikki on 2018/06/08.
@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class FirstViewController: UIViewController, HealthDelegate, LocationManagerDelegate, MKMapViewDelegate, UISearchBarDelegate, UITextFieldDelegate {
+class MainViewController: UIViewController, HealthDelegate, LocationManagerDelegate, MKMapViewDelegate, UISearchBarDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var buttonComeBackToCurrent: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!

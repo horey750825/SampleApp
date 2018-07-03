@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		2FD385BE7C02CED2DDADE561 /* Pods_SampleAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 177D6133D7B67FFF75608488 /* Pods_SampleAppUITests.framework */; };
 		A130AD9C20CA5E3D00811EC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A130AD9B20CA5E3D00811EC0 /* AppDelegate.swift */; };
-		A130AD9E20CA5E3D00811EC0 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A130AD9D20CA5E3D00811EC0 /* FirstViewController.swift */; };
-		A130ADA020CA5E3D00811EC0 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A130AD9F20CA5E3D00811EC0 /* SecondViewController.swift */; };
+		A130AD9E20CA5E3D00811EC0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A130AD9D20CA5E3D00811EC0 /* MainViewController.swift */; };
+		A130ADA020CA5E3D00811EC0 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A130AD9F20CA5E3D00811EC0 /* MenuViewController.swift */; };
 		A130ADA320CA5E3D00811EC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A130ADA120CA5E3D00811EC0 /* Main.storyboard */; };
 		A130ADA520CA5E3E00811EC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A130ADA420CA5E3E00811EC0 /* Assets.xcassets */; };
 		A130ADA820CA5E3E00811EC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A130ADA620CA5E3E00811EC0 /* LaunchScreen.storyboard */; };
@@ -54,8 +54,8 @@
 		A056E7582D319C5580458A32 /* Pods-SampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SampleApp/Pods-SampleApp.release.xcconfig"; sourceTree = "<group>"; };
 		A130AD9820CA5E3D00811EC0 /* SampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A130AD9B20CA5E3D00811EC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A130AD9D20CA5E3D00811EC0 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		A130AD9F20CA5E3D00811EC0 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		A130AD9D20CA5E3D00811EC0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		A130AD9F20CA5E3D00811EC0 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		A130ADA220CA5E3D00811EC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A130ADA420CA5E3E00811EC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A130ADA720CA5E3E00811EC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -181,8 +181,8 @@
 		A172A89120D234C7009F4EA4 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				A130AD9D20CA5E3D00811EC0 /* FirstViewController.swift */,
-				A130AD9F20CA5E3D00811EC0 /* SecondViewController.swift */,
+				A130AD9D20CA5E3D00811EC0 /* MainViewController.swift */,
+				A130AD9F20CA5E3D00811EC0 /* MenuViewController.swift */,
 				A172A89520D2367B009F4EA4 /* LoginViewController.swift */,
 			);
 			path = ViewController;
@@ -488,11 +488,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A172A89720D2367B009F4EA4 /* LoginViewController.swift in Sources */,
-				A130ADA020CA5E3D00811EC0 /* SecondViewController.swift in Sources */,
+				A130ADA020CA5E3D00811EC0 /* MenuViewController.swift in Sources */,
 				A130AD9C20CA5E3D00811EC0 /* AppDelegate.swift in Sources */,
 				A172A89C20D23980009F4EA4 /* Common.swift in Sources */,
 				A17EC71620E5F5F800AC3A2F /* LocationManager.swift in Sources */,
-				A130AD9E20CA5E3D00811EC0 /* FirstViewController.swift in Sources */,
+				A130AD9E20CA5E3D00811EC0 /* MainViewController.swift in Sources */,
 				A1DA6EF920D37C0F00DDB041 /* HealthManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

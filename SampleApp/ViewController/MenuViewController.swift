@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  MenuViewController.swift
 //  SampleApp
 //
 //  Created by Nikki on 2018/06/08.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController, UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+class MenuViewController: UIViewController, UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
 
     @IBOutlet weak var labelUserName: UILabel!
