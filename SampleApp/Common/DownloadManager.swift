@@ -20,7 +20,8 @@ class DownloadManager: NSObject {
     
     func imageForUrl(urlString: String, completion: @escaping(UIImage?, String) -> ()) {
         DispatchQueue.global().async {
-            if let data = self.cache.object(forKey: urlString as AnyObject) as? Data {
+            let md5String = urlString.md5!
+            if let data = self.cache.object(forKey: md5String as AnyObject) as? Data {
                 let image = UIImage(data: data)
                 DispatchQueue.main.async {
                     logger.debug("get from cache")
@@ -43,7 +44,7 @@ class DownloadManager: NSObject {
                 }
                 
                 let image = UIImage(data: data)
-                self.cache.setObject(data as AnyObject, forKey: urlString as AnyObject)
+                self.cache.setObject(data as AnyObject, forKey: md5String as AnyObject)
                 DispatchQueue.main.async {
                     logger.debug("get from download")
                     completion(image, urlString)
