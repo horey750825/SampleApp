@@ -118,6 +118,9 @@ class MenuViewController: UIViewController, UIScrollViewDelegate, UITableViewDat
         }
         if indexPath.row != 5 {
             cell.accessoryType = .none
+            cell.selectionStyle = .none
+        } else {
+            cell.accessoryType = .detailButton
         }
         return cell
     }
