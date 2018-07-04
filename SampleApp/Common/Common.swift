@@ -24,6 +24,11 @@ struct Common {
     static let USERDATA_FAMILY_NAME = "USERDATA_FAMILY_NAME"
     static let USERDATA_EMAIL = "USERDATA_EMAIL"
     static let USERDATA_USER_IMAGE = "USERDATA_USER_IMAGE"
+    
+    static func showSimpleAlert(Title: String, Message: String) {
+        let alert = UIAlertController(title: Title, message: Message)
+        alert.show()
+    }
 }
 
 struct DeviceProfile {
