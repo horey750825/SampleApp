@@ -54,9 +54,17 @@ class MenuViewController: UIViewController, UIScrollViewDelegate, UITableViewDat
     func prepareSetting() {
         setLabel()
         setProfile()
-        let imageUrl = Common.ud.url(forKey: Common.USERDATA_USER_IMAGE)
-        let imageData = NSData(contentsOf: imageUrl!)
-        imageViewUser.image = UIImage(data: imageData! as Data)!
+        
+        if let imageUrl = Common.ud.url(forKey: Common.USERDATA_USER_IMAGE) {
+            let urlString = imageUrl.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            DownloadManager.sharedInstance.imageForUrl(urlString: urlString!) { (image, urlString) in
+                guard let image = image else {
+                    logger.debug("image = nil")
+                    return
+                }
+                self.imageViewUser.image = image
+            }
+        }
     }
     
     func setLabel() {
