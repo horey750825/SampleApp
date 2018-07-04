@@ -197,12 +197,23 @@ class FirstViewController: UIViewController, HealthDelegate, LocationManagerDele
     // #MARK - UISearchBarDelegate
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.view.endEditing(true)
+        guard let text = searchBar.text else {
+            logger.debug("No searching text")
+            Common.showSimpleAlert(Title: "Error", Message: "No searching text")
+            return
+        }
+        
+        guard text.isEmpty == false else {
+            logger.debug("No searching text")
+            Common.showSimpleAlert(Title: "Error", Message: "No searching text")
+            return
+        }
+        
         self.clearAllPinsAndOverlays()
         
         let request = MKLocalSearchRequest()
         request.region = self.mapView.region
-        request.naturalLanguageQuery = searchBar.text
-        
+        request.naturalLanguageQuery = text
         let mySearch = MKLocalSearch(request: request)
         
         mySearch.start { (response, error) in
