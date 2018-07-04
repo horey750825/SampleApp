@@ -30,7 +30,13 @@ class DownloadManager: NSObject {
                 return
             }
             
-            let downloadTask = URLSession.shared.dataTask(with: URL(string: urlString)!) { (data, response, error) in
+            guard let url = URL(string: urlString) else {
+                logger.debug("url = nil")
+                completion(nil, urlString)
+                return
+            }
+            
+            let downloadTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
                 guard error == nil else {
                     logger.debug("\(error!.localizedDescription)")
                     completion(nil, urlString)
