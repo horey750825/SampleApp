@@ -21,6 +21,7 @@
 		A172A89C20D23980009F4EA4 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = A172A89B20D23980009F4EA4 /* Common.swift */; };
 		A17EC71320E4DED400AC3A2F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A17EC71220E4DED400AC3A2F /* MapKit.framework */; };
 		A17EC71620E5F5F800AC3A2F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17EC71520E5F5F800AC3A2F /* LocationManager.swift */; };
+		A1D3055320ECF4A8003EE4B5 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D3055220ECF4A8003EE4B5 /* DownloadManager.swift */; };
 		A1DA6EF720D242F600DDB041 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1DA6EF620D242F600DDB041 /* HealthKit.framework */; };
 		A1DA6EF920D37C0F00DDB041 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DA6EF820D37C0E00DDB041 /* HealthManager.swift */; };
 		E19CFCFBF4F533FA3B6326F5 /* Pods_SampleAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7667E6F8B45BF891A6E242D /* Pods_SampleAppTests.framework */; };
@@ -72,6 +73,7 @@
 		A172A89B20D23980009F4EA4 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		A17EC71220E4DED400AC3A2F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A17EC71520E5F5F800AC3A2F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		A1D3055220ECF4A8003EE4B5 /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		A1DA6EF620D242F600DDB041 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		A1DA6EF820D37C0E00DDB041 /* HealthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
 		C7667E6F8B45BF891A6E242D /* Pods_SampleAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				A172A89B20D23980009F4EA4 /* Common.swift */,
+				A1D3055220ECF4A8003EE4B5 /* DownloadManager.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 				A172A89720D2367B009F4EA4 /* LoginViewController.swift in Sources */,
 				A130ADA020CA5E3D00811EC0 /* MenuViewController.swift in Sources */,
 				A130AD9C20CA5E3D00811EC0 /* AppDelegate.swift in Sources */,
+				A1D3055320ECF4A8003EE4B5 /* DownloadManager.swift in Sources */,
 				A172A89C20D23980009F4EA4 /* Common.swift in Sources */,
 				A17EC71620E5F5F800AC3A2F /* LocationManager.swift in Sources */,
 				A130AD9E20CA5E3D00811EC0 /* MainViewController.swift in Sources */,
