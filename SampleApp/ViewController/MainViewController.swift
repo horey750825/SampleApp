@@ -233,6 +233,7 @@ class MainViewController: UIViewController, HealthDelegate, LocationManagerDeleg
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
         searchBar.clear()
         self.clearAllPinsAndOverlays()
     }
