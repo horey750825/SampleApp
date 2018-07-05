@@ -61,7 +61,7 @@ class DownloadManager: NSObject {
                 
                 guard let lastModifiedDate = httpResponse.allHeaderFields["Last-Modified"] as? String else {
                     logger.debug("lastModifiedDate = nil")
-                    completion(true, GetHttpHeaderError.getLastModifiedError)
+                    completion(false, GetHttpHeaderError.getLastModifiedError)
                     return
                 }
                 
@@ -88,12 +88,12 @@ class DownloadManager: NSObject {
         }
     }
     
-    func imageForUrl(urlString: String, useCache: Bool, completion: @escaping(UIImage?, String) -> ()) {
+    func imageForUrl(urlString: String, checkCache: Bool, completion: @escaping(UIImage?, String) -> ()) {
         DispatchQueue.global().async {
             let md5String = urlString.md5!
             
             if let data = self.cache.object(forKey: md5String as AnyObject) as? Data {
-                if useCache {
+                if checkCache {
                     let image = UIImage(data: data)
                     DispatchQueue.main.async {
                         logger.debug("get from cache")

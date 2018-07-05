@@ -57,12 +57,16 @@ class MenuViewController: UIViewController, UIScrollViewDelegate, UITableViewDat
         
         if let imageUrl = Common.ud.url(forKey: Common.USERDATA_USER_IMAGE) {
             let urlString = imageUrl.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-            DownloadManager.sharedInstance.imageForUrl(urlString: urlString!, useCache: true) { (image, urlString) in
-                guard let image = image else {
-                    logger.debug("image = nil")
-                    return
-                }
-                self.imageViewUser.image = image
+            DownloadManager.sharedInstance.shouldDownload(urlString: urlString!) { (isModified, error) in
+                logger.debug("\(isModified)")
+                let checkCache = !isModified
+                DownloadManager.sharedInstance.imageForUrl(urlString: urlString!, checkCache: checkCache, completion: { (image, urlString) in
+                    guard let image = image else {
+                        logger.debug("image = nil")
+                        return
+                    }
+                    self.imageViewUser.image = image
+                })
             }
         }
     }
