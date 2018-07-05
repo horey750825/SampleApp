@@ -8,47 +8,80 @@
 
 import UIKit
 
+enum GetHttpHeaderError: Error {
+    case urlError
+    case dataTaskError
+    case responseError
+    case httpResponseError
+    case getLastModifiedError
+}
+
 class DownloadManager: NSObject {
 
     static let sharedInstance: DownloadManager = DownloadManager()
     
     var cache = NSCache<AnyObject, AnyObject>()
+    var dataformat = DateFormatter()
     
     private override init() {
         super.init()
+        dataformat.dateFormat = "EEEE, dd LLL yyyy hh:mm:ss zzz"
     }
     
-    func shouldDownload(urlString: String, completion: @escaping(Bool) -> ()) {
+    func shouldDownload(urlString: String, completion: @escaping(Bool, GetHttpHeaderError?) -> ()) {
         DispatchQueue.global().async {
             let md5String = urlString.md5!
+            
             guard let url = URL(string: urlString) else {
                 logger.debug("url = nil")
-                completion(false)
+                completion(true, GetHttpHeaderError.urlError)
                 return
             }
             var request = URLRequest(url: url)
             request.httpMethod = "HEAD"
             let requestTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                
-                var isModified = true
-                
+                                
                 guard error == nil else {
                     logger.debug("\(error!.localizedDescription)")
-                    completion(isModified)
+                    completion(true, GetHttpHeaderError.dataTaskError)
                     return
                 }
                 
                 guard let response = response else {
                     logger.debug("response = nil")
-                    completion(isModified)
+                    completion(true, GetHttpHeaderError.responseError)
                     return
                 }
                 
-                if let httpResponse = response as? HTTPURLResponse, let lastModifiedDate = httpResponse.allHeaderFields["Last-Modified"] as? String {
-                    
-                    
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    logger.debug("httpResponse = nil")
+                    completion(true, GetHttpHeaderError.httpResponseError)
+                    return
                 }
                 
+                guard let lastModifiedDate = httpResponse.allHeaderFields["Last-Modified"] as? String else {
+                    logger.debug("lastModifiedDate = nil")
+                    completion(true, GetHttpHeaderError.getLastModifiedError)
+                    return
+                }
+                
+                logger.debug("Last-Modified \(lastModifiedDate)")
+                
+                if let newLastModifiedDate = self.dataformat.date(from: lastModifiedDate) {
+                    if let savedLastModifiedDate = Common.ud.date(forKey: md5String) {
+                        if newLastModifiedDate != savedLastModifiedDate {
+                            completion(true, nil)
+                        } else {
+                            completion(false, nil)
+                        }
+                    } else {
+                        Common.ud.set(newLastModifiedDate, forKey: md5String)
+                        Common.ud.synchronize()
+                        completion(true, nil)
+                    }
+                } else {
+                    completion(true, GetHttpHeaderError.getLastModifiedError)
+                }
             }
             
             requestTask.resume()
