@@ -34,7 +34,7 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Kj-gb-WCq">
                                 <rect key="frame" x="0.0" y="151" width="375" height="467"/>
                             </mapView>
-                            <searchBar contentMode="redraw" placeholder="Input the distance(km) " showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d74-5Z-WJ4">
+                            <searchBar contentMode="redraw" placeholder="Search store" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d74-5Z-WJ4">
                                 <rect key="frame" x="0.0" y="95" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
