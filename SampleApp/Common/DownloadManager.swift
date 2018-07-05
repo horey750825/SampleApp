@@ -18,6 +18,43 @@ class DownloadManager: NSObject {
         super.init()
     }
     
+    func shouldDownload(urlString: String, completion: @escaping(Bool) -> ()) {
+        DispatchQueue.global().async {
+            let md5String = urlString.md5!
+            guard let url = URL(string: urlString) else {
+                logger.debug("url = nil")
+                completion(false)
+                return
+            }
+            var request = URLRequest(url: url)
+            request.httpMethod = "HEAD"
+            let requestTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                
+                var isModified = true
+                
+                guard error == nil else {
+                    logger.debug("\(error!.localizedDescription)")
+                    completion(isModified)
+                    return
+                }
+                
+                guard let response = response else {
+                    logger.debug("response = nil")
+                    completion(isModified)
+                    return
+                }
+                
+                if let httpResponse = response as? HTTPURLResponse, let lastModifiedDate = httpResponse.allHeaderFields["Last-Modified"] as? String {
+                    
+                    
+                }
+                
+            }
+            
+            requestTask.resume()
+        }
+    }
+    
     func imageForUrl(urlString: String, completion: @escaping(UIImage?, String) -> ()) {
         DispatchQueue.global().async {
             let md5String = urlString.md5!
