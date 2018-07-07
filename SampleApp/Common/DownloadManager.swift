@@ -22,6 +22,7 @@ class DownloadManager: NSObject {
     
     var cache = NSCache<AnyObject, AnyObject>()
     var dataformat = DateFormatter()
+    let imageFileFormat = ".png"
     
     private override init() {
         super.init()
@@ -92,11 +93,9 @@ class DownloadManager: NSObject {
         DispatchQueue.global().async {
             let md5String = urlString.md5!
             
-            if let data = self.cache.object(forKey: md5String as AnyObject) as? Data {
-                if checkCache {
-                    let image = UIImage(data: data)
+            if checkCache {
+                if let image = self.getImage(urlString: urlString) {
                     DispatchQueue.main.async {
-                        logger.debug("get from cache")
                         completion(image, urlString)
                     }
                     return
@@ -122,17 +121,46 @@ class DownloadManager: NSObject {
                     return
                 }
                 
+                let fileName = md5String + self.imageFileFormat
+                let filePath = Common.getDocumentsDirectory().appendingPathComponent(fileName)
                 let image = UIImage(data: data)
-                self.cache.setObject(data as AnyObject, forKey: md5String as AnyObject)
+                self.cache.setObject(image as AnyObject, forKey: md5String as AnyObject)
                 DispatchQueue.main.async {
                     logger.debug("get from download")
                     completion(image, urlString)
                 }
                 
+                do {
+                    try data.write(to: filePath)
+                } catch {
+                    NSLog("write file error \(error.localizedDescription)")
+                }
+
+                
             }
             
             downloadTask.resume()
         }
+    }
+    
+    func getImage(urlString: String) -> UIImage? {
+        let md5String = urlString.md5!
+        
+        if let image = self.cache.object(forKey: md5String as AnyObject) as? UIImage {
+            logger.debug("get from cache")
+            return image
+        }
+        
+        let fileName = md5String + imageFileFormat
+        let filePath = Common.getDocumentsDirectory().appendingPathComponent(fileName)
+        if let image = UIImage(contentsOfFile: filePath.path) {
+            self.cache.setObject(image as AnyObject, forKey: md5String as AnyObject)
+            logger.debug("get from file")
+            return image
+        }
+
+        
+        return nil
     }
     
 }
