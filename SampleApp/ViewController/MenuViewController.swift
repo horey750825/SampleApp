@@ -54,7 +54,11 @@ class MenuViewController: UIViewController, UIScrollViewDelegate, UITableViewDat
     func prepareSetting() {
         setLabel()
         setProfile()
-        setProfileImage()
+        if Common.didConnectNetwork {
+            setProfileImage()
+        } else {
+            Common.showNetworkWarningAlert()
+        }
     }
     
     func setProfileImage() {

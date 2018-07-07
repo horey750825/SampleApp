@@ -36,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // setup GoogleSingin
         GIDSignIn.sharedInstance().clientID = "879429783455-4ip0nbjucb8optf2hp5dd5np6sgggtt5.apps.googleusercontent.com"
         
+        Common.didConnectNetwork = Common.isConnectedToNetwork()
         return true
     }
 

@@ -56,7 +56,9 @@ class MainViewController: UIViewController, HealthDelegate, LocationManagerDeleg
         super.viewDidAppear(animated)
         
         if !Common.ud.bool(forKey: Common.DID_SIGNIN) {
-            present(LoginViewController(), animated: true, completion: nil)
+            if Common.didConnectNetwork {
+                present(LoginViewController(), animated: true, completion: nil)
+            }
         } else {
             if !didAuthorize {
                 self.getAllAuthorize()
@@ -64,6 +66,10 @@ class MainViewController: UIViewController, HealthDelegate, LocationManagerDeleg
                 LocationManager.sharedInstance.startUpdatingLocation()
             }
             setLabelDescription()
+        }
+        
+        if !Common.didConnectNetwork {
+            Common.showNetworkWarningAlert()
         }
     }
     
@@ -206,6 +212,11 @@ class MainViewController: UIViewController, HealthDelegate, LocationManagerDeleg
         guard text.isEmpty == false else {
             logger.debug("No searching text")
             Common.showSimpleAlert(Title: "Error", Message: "No searching text")
+            return
+        }
+        
+        guard Common.didConnectNetwork == true else {
+            Common.showNetworkWarningAlert()
             return
         }
         
