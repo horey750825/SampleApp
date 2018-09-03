@@ -55,6 +55,7 @@ class HealthManager: NSObject {
     let personalAge = HKObjectType.characteristicType(forIdentifier: .dateOfBirth)!
     let walkingDistance = HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!
     var dataListForTableView = [String]()
+    let indexWalkingEveryday = 5
     
     
     private override init() {
@@ -251,20 +252,21 @@ class HealthManager: NSObject {
         profileCount -= 1
         if profileCount == 0 {
             self.dataListForTableView = [
-                HealthManager.sharedInstance.personalProfile.sex!,
-                String(HealthManager.sharedInstance.personalProfile.age!),
-                String(HealthManager.sharedInstance.personalProfile.height),
-                String(HealthManager.sharedInstance.personalProfile.weight),
-                String(HealthManager.sharedInstance.personalProfile.walkingDistance.rounded(toPlaces: 2)),
-                String(HealthManager.sharedInstance.personalProfile.distanceEveryday.rounded(toPlaces: 2))
+                personalProfile.sex!,
+                String(personalProfile.age!),
+                String(personalProfile.height),
+                String(personalProfile.weight),
+                String(personalProfile.walkingDistance.rounded(toPlaces: 2)),
+                String(personalProfile.distanceEveryday.rounded(toPlaces: 2))
             ]
             self.delegate?.finishPersonalProfile()
         }
     }
     
-    func setDistanceEverydat(_ distance: Double) {
+    func setDistanceEveryday(_ distance: Double) {
         personalProfile.didCheckDistanceEveryday = true
         personalProfile.distanceEveryday = distance
+        dataListForTableView[indexWalkingEveryday] = String(personalProfile.distanceEveryday.rounded(toPlaces: 2))
         Common.ud.set(distance, forKey: Common.SET_WALKING_DISTANCE)
         Common.ud.synchronize()
     }

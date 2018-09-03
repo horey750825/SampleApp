@@ -147,10 +147,11 @@ class MenuViewController: UIViewController, UIScrollViewDelegate, UITableViewDat
             alert.addAction(title: "OK", style: .default, isEnabled: true, handler: { (action) in
                 let inputText = alert.textFields!.first!.text!
                 if !inputText.isEmpty {
-                    HealthManager.sharedInstance.setDistanceEverydat(Double(inputText)!)
+                    HealthManager.sharedInstance.setDistanceEveryday(Double(inputText)!)
+                    self.dataList = HealthManager.sharedInstance.dataListForTableView
+                    tableView.reloadData()
                 }
                 logger.debug("\(inputText)")
-                tableView.reloadData()
             })
             alert.show()
         }

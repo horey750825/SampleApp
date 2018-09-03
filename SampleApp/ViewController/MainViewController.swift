@@ -190,7 +190,7 @@ class MainViewController: UIViewController, HealthDelegate, LocationManagerDeleg
                 alert.addAction(title: "OK", style: .default, isEnabled: true, handler: { (action) in
                     let inputText = alert.textFields!.first!.text!
                     if !inputText.isEmpty {
-                        HealthManager.sharedInstance.setDistanceEverydat(Double(inputText)!)
+                        HealthManager.sharedInstance.setDistanceEveryday(Double(inputText)!)
                         self.setLabelDescription()
                     }
                     logger.debug("\(inputText)")
