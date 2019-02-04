@@ -73,8 +73,6 @@
 		A172A89B20D23980009F4EA4 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		A17EC71220E4DED400AC3A2F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A17EC71520E5F5F800AC3A2F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		A198C90720ED111600CE1826 /* CommonCryptoHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonCryptoHeader.h; sourceTree = "<group>"; };
-		A198C90820ED113800CE1826 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		A1D3055220ECF4A8003EE4B5 /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		A1DA6EF620D242F600DDB041 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		A1DA6EF820D37C0E00DDB041 /* HealthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
@@ -127,7 +125,6 @@
 		A130AD8F20CA5E3D00811EC0 = {
 			isa = PBXGroup;
 			children = (
-				A198C90620ED104100CE1826 /* CommonCrypto */,
 				A130AD9A20CA5E3D00811EC0 /* SampleApp */,
 				A130ADB120CA5E3E00811EC0 /* SampleAppTests */,
 				A130ADBC20CA5E3E00811EC0 /* SampleAppUITests */,
@@ -224,15 +221,6 @@
 				A17EC71520E5F5F800AC3A2F /* LocationManager.swift */,
 			);
 			path = Location;
-			sourceTree = "<group>";
-		};
-		A198C90620ED104100CE1826 /* CommonCrypto */ = {
-			isa = PBXGroup;
-			children = (
-				A198C90720ED111600CE1826 /* CommonCryptoHeader.h */,
-				A198C90820ED113800CE1826 /* module.modulemap */,
-			);
-			path = CommonCrypto;
 			sourceTree = "<group>";
 		};
 		F6B19E55347E543128756B0D /* Pods */ = {
