@@ -266,9 +266,13 @@ class HealthManager: NSObject {
     func setDistanceEveryday(_ distance: Double) {
         personalProfile.didCheckDistanceEveryday = true
         personalProfile.distanceEveryday = distance
-        dataListForTableView[indexWalkingEveryday] = String(personalProfile.distanceEveryday.rounded(toPlaces: 2))
         Common.ud.set(distance, forKey: Common.SET_WALKING_DISTANCE)
         Common.ud.synchronize()
+        guard dataListForTableView.isEmpty != true else {
+            logger.debug("Setting error, please fill the information of health")
+            return
+        }
+        dataListForTableView[indexWalkingEveryday] = String(personalProfile.distanceEveryday.rounded(toPlaces: 2))
     }
     
     func getShouldWalkDistance() -> Double {
